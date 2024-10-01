@@ -1,10 +1,38 @@
 .main {
   background-image: url(../assets/georgia-de-lotz--UsJoNxLaNo-unsplash.png);
-  background-color: aqua;
+  background-size: cover;
 }
 
 .main__title {
+  margin: 0 auto;
+  padding-top: 80px;
+  max-width: 608px;
   font-size: 60px;
   font-weight: 400;
   line-height: 64px;
+  color: #fff;
+}
+
+.main__subtitle {
+  padding-top: 32px;
+  text-align: center;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 24px;
+  color: #fff;
+}
+
+.main__searchbar {
+  padding: 88px 0 80px 0;
+  display: flex;
+  justify-content: center;
+}
+
+.main__search-input {
+  width: 608px;
+  height: 64px;
+  padding-left: 24px;
+  border-radius: 100px;
+  border-style: none;
+  font-size: 16px;
 }

@@ -5,16 +5,16 @@ export default function Nav() {
   return (
     <nav className="nav">
       <Link to="/" className="nav__title">
-        News Explorer
+        NewsExplorer
       </Link>
       <div className="nav__group">
-        <Link to="/" className="nav__home-btn">
+        <Link to="/" className="nav__nav-item">
           Home
         </Link>
-        <Link to="/saved-news" className="nav__saved-articles-btn">
+        <Link to="/saved-news" className="nav__nav-item">
           Saved Articles
         </Link>
-        <Link to="/profile" className="nav__profile-btn">
+        <Link to="/profile" className="nav__nav-item">
           Username
         </Link>
       </div>
