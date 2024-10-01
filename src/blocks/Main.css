@@ -1,0 +1,10 @@
+.main {
+  background-image: url(../assets/georgia-de-lotz--UsJoNxLaNo-unsplash.png);
+  background-color: aqua;
+}
+
+.main__title {
+  font-size: 60px;
+  font-weight: 400;
+  line-height: 64px;
+}

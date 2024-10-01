@@ -3,10 +3,6 @@
   font-family: "Roboto";
 }
 
-.page {
-  background-color: #fff;
-}
-
 .page__content {
   max-width: 1440px;
   font-family: "Roboto", "Arial", sans-serif;

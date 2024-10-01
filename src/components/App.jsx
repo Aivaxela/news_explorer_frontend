@@ -1,7 +1,7 @@
 import "../blocks/App.css";
 import React from "react";
 import Preloader from "../components/Preloader";
-import Header from "../components/Header";
+import Nav from "./Nav";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
@@ -11,7 +11,6 @@ export default function App() {
   return (
     <div className="page">
       <div className="page__content">
-        <Header />
         <Routes>
           <Route path="/" element={<Main></Main>} />
           <Route path="/saved-news" element={<SavedNews></SavedNews>} />
