@@ -1,10 +1,24 @@
+import "../blocks/App.css";
 import React from "react";
 import Preloader from "../components/Preloader";
+import Header from "../components/Header";
+import Main from "../components/Main";
+import Footer from "../components/Footer";
+import SavedNews from "../components/SavedNews";
+import { Route, Routes, Navigate } from "react-router-dom";
 
 export default function App() {
   return (
-    <div>
-      <h1>Hello!</h1>
+    <div className="page">
+      <div className="page__content">
+        <Header />
+        <Routes>
+          <Route path="/" element={<Main></Main>} />
+          <Route path="/saved-news" element={<SavedNews></SavedNews>} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Routes>
+        <Footer />
+      </div>
     </div>
   );
 }

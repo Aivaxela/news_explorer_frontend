@@ -1,0 +1,13 @@
+@font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-400-regular.woff);
+  font-family: "Roboto";
+}
+
+.page {
+  background-color: #fff;
+}
+
+.page__content {
+  max-width: 1440px;
+  font-family: "Roboto", "Arial", sans-serif;
+}
