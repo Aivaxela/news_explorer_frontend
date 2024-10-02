@@ -57,4 +57,9 @@
   border-style: none;
   background-color: #2f71e5;
   color: #fff;
+  cursor: pointer;
+}
+
+.main__search-btn:hover {
+  background-color: #347EFF;
 }

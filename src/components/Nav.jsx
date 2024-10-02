@@ -20,8 +20,7 @@ export default function Nav() {
             <p className="nav__username">Riley</p>
             <img
               src={logoutIcon}
-              fill="currentColor"
-              alt=""
+              alt="logout icon"
               className="nav__logout-icon"
             />
           </div>

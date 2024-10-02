@@ -1,7 +1,6 @@
 import "../blocks/App.css";
 import React from "react";
 import Preloader from "../components/Preloader";
-import Nav from "./Nav";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";

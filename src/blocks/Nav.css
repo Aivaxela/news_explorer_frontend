@@ -15,6 +15,10 @@
   font-family: "Roboto-Slab", "Arial", sans-serif;
 }
 
+.nav__title:hover {
+  opacity: 50%;
+}
+
 .nav__group {
   margin: 0 104px 0 auto;
   display: flex;
@@ -23,31 +27,37 @@
 }
 
 .nav__nav-item {
-  height: 100px;
+  height: 75px;
   align-content: center;
   font-weight: 500;
   line-height: 24px;
   text-decoration: none;
-  color: #fff;
+  color: #b6bcBf;
   box-sizing: border-box;
 }
 
 .nav__nav-item:hover {
   border-bottom: #fff solid 3px;
   padding-top: 3px;
+  color: #fff;
 }
 
 .nav__nav-item-group {
-  padding: 15px;
+  padding: 8px 15px;
   display: flex;
   border-radius: 100px;
-  border: solid 1px #fff;
+  border: solid 2px #fff;
   text-decoration: none;
+}
+
+.nav__nav-item-group:hover {
+  opacity: 50%;
 }
 
 .nav__user-icon-logout {
   display: flex;
   gap: 10px;
+  align-items: center;
 }
 
 .nav__username {
@@ -59,5 +69,9 @@
 .nav__logout-icon {
   font-weight: 500;
   margin: 0;
-  color: #fff;
+  filter: invert(100%) sepia(100%) saturate(1%) hue-rotate(199deg) brightness(107%) contrast(100%);
+}
+
+.nav__logout-icon_black {
+  filter: invert(0%) sepia(100%) saturate(7444%) hue-rotate(184deg) brightness(83%) contrast(111%);
 }
