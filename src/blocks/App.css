@@ -1,9 +1,17 @@
 @font-face {
   src: url(../vendor/moved_final-project_fonts_latin/roboto-400-regular.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-400-regular.woff2);
   font-family: "Roboto";
 }
 
+@font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-400-regular.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-400-regular.woff2);
+  font-family: "Roboto-Slab";
+}
+
 .page__content {
+  margin: 0 auto;
   max-width: 1440px;
   font-family: "Roboto", "Arial", sans-serif;
 }

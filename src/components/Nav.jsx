@@ -1,4 +1,5 @@
 import "../blocks/nav.css";
+import logoutIcon from "../assets/logout.svg";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
@@ -14,8 +15,16 @@ export default function Nav() {
         <Link to="/saved-news" className="nav__nav-item">
           Saved Articles
         </Link>
-        <Link to="/profile" className="nav__nav-item">
-          Username
+        <Link to="/profile" className="nav__nav-item-group">
+          <div className="nav__user-icon-logout">
+            <p className="nav__username">Riley</p>
+            <img
+              src={logoutIcon}
+              fill="currentColor"
+              alt=""
+              className="nav__logout-icon"
+            />
+          </div>
         </Link>
       </div>
     </nav>
