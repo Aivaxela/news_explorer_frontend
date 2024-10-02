@@ -25,8 +25,8 @@ export default function Main() {
             Search
           </button>
         </div>
-        <About />
       </main>
+      <About />
     </>
   );
 }
