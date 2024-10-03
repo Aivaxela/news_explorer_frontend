@@ -44,6 +44,7 @@
   font-size: 18px;
   line-height: 24px;
   font-weight: 500;
+  outline: none;
 }
 
 .main__search-btn {
@@ -58,8 +59,10 @@
   background-color: #2f71e5;
   color: #fff;
   cursor: pointer;
+  outline: none;
 }
 
-.main__search-btn:hover {
-  background-color: #347EFF;
+.main__search-btn:hover,
+.main__search-btn:focus {
+  background-color: #347eff;
 }

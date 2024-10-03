@@ -1,4 +1,32 @@
 .about {
   max-width: 1440px;
   display: flex;
+  margin-top: 80px;
+  gap: 56px;
+}
+
+.about__text-content {
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__text-title {
+  margin: 0;
+  padding-top: 51px;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "Roboto-Slab", "Arial", sans-serif;
+  color: #1a1b22;
+}
+
+.about__text {
+  margin: 0;
+  padding-top: 24px;
+  font-size: 18px;
+  color: #1a1b22;
+}
+
+.about__image {
+  margin-left: 104px;
 }
