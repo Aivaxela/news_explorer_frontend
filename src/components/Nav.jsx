@@ -1,5 +1,4 @@
 import "../blocks/nav.css";
-import logoutIcon from "../assets/logout.svg";
 import { Link } from "react-router-dom";
 
 export default function Nav() {
@@ -19,7 +18,7 @@ export default function Nav() {
           <div className="nav__user-icon-logout">
             <p className="nav__username">Riley</p>
             <img
-              src={logoutIcon}
+              src="../src/assets/logout.svg"
               alt="logout icon"
               className="nav__logout-icon"
             />
