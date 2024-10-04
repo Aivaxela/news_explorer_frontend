@@ -1,0 +1,17 @@
+.cards {
+  padding: 80px 104px;
+  background: #f5f6f7;
+}
+
+.cards__title {
+  margin: 0 0 64px 0;
+  font-size: 40px;
+  line-height: 46px;
+  font-family: "Roboto-Slab", "Arial", sans-serif;
+  color: #1a1b22;
+}
+
+.cards__list {
+  margin: 0;
+  padding: 0;
+}

@@ -5,6 +5,7 @@ import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { articles } from "../utils/text-data";
 
 export default function App() {
   return (

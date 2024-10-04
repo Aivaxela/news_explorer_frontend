@@ -1,6 +1,8 @@
 import "../blocks/Main.css";
 import Nav from "../components/Nav";
 import About from "../components/About";
+import SearchForm from "./SearchForm";
+import NewsCardList from "./NewsCardList";
 
 export default function Main() {
   return (
@@ -12,20 +14,9 @@ export default function Main() {
           Find the latest news on any topic and save them in your personal
           account.
         </p>
-        <div className="main__search-elements">
-          <label htmlFor="main-search" className="main__searchbar">
-            <input
-              type="text"
-              className="main__search-input"
-              id="main-search"
-              placeholder="Enter topic"
-            />
-          </label>
-          <button type="button" className="main__search-btn">
-            Search
-          </button>
-        </div>
+        <SearchForm />
       </main>
+      <NewsCardList />
       <About />
     </>
   );

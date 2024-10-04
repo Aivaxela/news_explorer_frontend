@@ -1,0 +1,67 @@
+.card {
+  margin: 0;
+  width: 400px;
+  height: 576px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+}
+
+.card__text-container {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.card__image {
+  width: 400px;
+  height: 272px;
+  object-fit: cover;
+}
+
+.card__date {
+  font-size: 18px;
+  line-height: 24px;
+  color: #b6bcbf;
+}
+
+.card__title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 30px;
+  font-family: "Roboto-Slab", "Arial", sans-serif;
+  color: #1a1b22;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.card__description {
+  margin: 0;
+  max-height: 110px;
+  font-size: 16px;
+  line-height: 22px;
+  color: #1a1b22;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+  line-clamp: 5;
+}
+
+.card__source {
+  margin: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-weight: 700;
+  font-family: "Roboto-Slab", "Arial", sans-serif;
+  color: #b6bcbf;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
