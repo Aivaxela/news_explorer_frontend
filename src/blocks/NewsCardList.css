@@ -16,7 +16,36 @@
   color: #1a1b22;
 }
 
+.cards__elements {
+  display: flex;
+  flex-direction: column;
+}
+
 .cards__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, min-content));
+  grid-gap: 16px 16px;
+  justify-content: center;
   margin: 0;
   padding: 0;
+}
+
+.cards__show-more {
+  margin-top: 64px;
+  width: 288px;
+  height: 64px;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 80px;
+  border-style: none;
+  color: #1a1b22;
+  background-color: #fff;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.cards__show-more:hover,
+.cards__show-more:focus {
+  background-color: #e8e8e8;
 }

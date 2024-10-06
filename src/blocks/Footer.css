@@ -18,7 +18,6 @@
   text-decoration: none;
   color: #b6bcbf;
   cursor: pointer;
-  outline: none;
 }
 
 .footer__api-link:hover,
@@ -40,7 +39,6 @@
   color: #1a1b22;
   cursor: pointer;
   text-decoration: none;
-  outline: none;
 }
 
 .footer__link-img {

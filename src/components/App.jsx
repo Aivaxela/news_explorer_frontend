@@ -22,7 +22,6 @@ export default function App() {
 
   const handleSearchSubmit = (value) => {
     setSearchQuery(value);
-    // setSearchResults(Array.from(testData.articles));
   };
 
   useEffect(() => {
