@@ -4,7 +4,7 @@ import About from "../components/About";
 import SearchForm from "./SearchForm";
 import NewsCardList from "./NewsCardList";
 
-export default function Main() {
+export default function Main({ resultsVisible, handleSearchSubmit }) {
   return (
     <>
       <main className="main">
@@ -14,9 +14,9 @@ export default function Main() {
           Find the latest news on any topic and save them in your personal
           account.
         </p>
-        <SearchForm />
+        <SearchForm handleSearchSubmit={handleSearchSubmit} />
       </main>
-      <NewsCardList />
+      <NewsCardList resultsVisible={resultsVisible} />
       <About />
     </>
   );

@@ -1,6 +1,11 @@
 .cards {
   padding: 80px 104px;
   background: #f5f6f7;
+  display: none;
+}
+
+.cards_visible {
+  display: block;
 }
 
 .cards__title {
