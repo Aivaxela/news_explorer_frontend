@@ -1,5 +1,5 @@
 import "../blocks/App.css";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Preloader from "../components/Preloader";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
@@ -11,6 +11,8 @@ import { testData } from "../utils/testData";
 export default function App() {
   const [resultsVisible, setResultsVisible] = useState(true); //TODO: set default to false
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchResultsAmount, setSearchResultsAmount] = useState(3);
 
   const api = new Api({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
@@ -20,7 +22,12 @@ export default function App() {
 
   const handleSearchSubmit = (value) => {
     setSearchQuery(value);
+    // setSearchResults(Array.from(testData.articles));
   };
+
+  useEffect(() => {
+    setSearchResults(Array.from(testData.articles));
+  }, []);
 
   return (
     <div className="page">
@@ -32,6 +39,8 @@ export default function App() {
               <Main
                 resultsVisible={resultsVisible}
                 handleSearchSubmit={handleSearchSubmit}
+                searchResults={searchResults}
+                searchResultsAmount={searchResultsAmount}
               ></Main>
             }
           />
