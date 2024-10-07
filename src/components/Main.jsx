@@ -6,9 +6,11 @@ import NewsCardList from "./NewsCardList";
 
 export default function Main({
   resultsVisible,
+  resultsLoading,
   handleSearchSubmit,
   searchResults,
-  searchResultsAmount,
+  searchResultsShown,
+  showMoreResults,
 }) {
   return (
     <>
@@ -24,7 +26,9 @@ export default function Main({
       <NewsCardList
         resultsVisible={resultsVisible}
         searchResults={searchResults}
-        searchResultsAmount={searchResultsAmount}
+        searchResultsShown={searchResultsShown}
+        showMoreResults={showMoreResults}
+        resultsLoading={resultsLoading}
       />
       <About />
     </>

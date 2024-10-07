@@ -32,6 +32,7 @@
 
 .cards__show-more {
   margin-top: 64px;
+  padding: 0;
   width: 288px;
   height: 64px;
   cursor: pointer;

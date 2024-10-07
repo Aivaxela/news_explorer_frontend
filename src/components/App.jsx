@@ -9,10 +9,12 @@ import Api from "../utils/newsApi";
 import { testData } from "../utils/testData";
 
 export default function App() {
-  const [resultsVisible, setResultsVisible] = useState(true); //TODO: set default to false
+  const [resultsVisible, setResultsVisible] = useState(false); //TODO: set default to false
+  const [resultsLoading, setResultsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
-  const [searchResultsAmount, setSearchResultsAmount] = useState(3);
+  const [searchResultsShown, setSearchResultsShown] = useState(3);
+  const [searchResultsAvailable, setSearchResultsAvailable] = useState(0);
 
   const api = new Api({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
@@ -20,12 +22,29 @@ export default function App() {
     searchQuery: searchQuery,
   });
 
-  const handleSearchSubmit = (value) => {
-    setSearchQuery(value);
+  const handleSearchSubmit = (query) => {
+    setResultsLoading(true);
+    api
+      .getNewsArticles(query)
+      .then((res) => {
+        setResultsVisible(res.totalResults > 0 ? true : false);
+        setSearchResultsAvailable(res.totalResults > 0 ? res.totalResults : 0);
+        setSearchResults(res.totalResults > 0 ? res.articles : []);
+      })
+      .catch((err) => console.log(err)) //TODO: handle this error properly
+      .finally(() => setResultsLoading(false));
   };
 
+  const showMoreResults = () =>
+    setSearchResultsShown(
+      searchResultsAvailable > searchResultsShown
+        ? searchResultsShown + 3
+        : searchResultsShown
+    );
+
   useEffect(() => {
-    setSearchResults(Array.from(testData.articles));
+    // setSearchResults(Array.from(testData.articles)); //TODO: TEST DATA
+    // setSearchResultsAvailable(testData.totalResults); //TODO: TEST DATA
   }, []);
 
   return (
@@ -37,9 +56,11 @@ export default function App() {
             element={
               <Main
                 resultsVisible={resultsVisible}
+                resultsLoading={resultsLoading}
                 handleSearchSubmit={handleSearchSubmit}
                 searchResults={searchResults}
-                searchResultsAmount={searchResultsAmount}
+                searchResultsShown={searchResultsShown}
+                showMoreResults={showMoreResults}
               ></Main>
             }
           />
