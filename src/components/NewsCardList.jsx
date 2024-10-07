@@ -11,7 +11,14 @@ export default function NewsCardList({
 }) {
   return (
     <>
-      <Preloader resultsLoading={resultsLoading} />
+      <div
+        className={`cards__loading ${
+          resultsLoading ? "cards__loading_visible" : ""
+        }`}
+      >
+        <Preloader />
+        <p className="cards__loading-title">Searching for news...</p>
+      </div>
       <section className={`cards ${resultsVisible ? "cards_visible" : ""}`}>
         <h2 className="cards__title">Search results</h2>
         <div className="cards__elements">

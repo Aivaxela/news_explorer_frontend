@@ -4,6 +4,25 @@
   display: none;
 }
 
+.cards__loading {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 282px;
+  gap: 24px;
+  background-color: #f5f6f7;
+}
+
+.cards__loading_visible {
+  display: flex;
+}
+
+.cards__loading-title {
+  margin: 0;
+  color: #b6bcbf;
+}
+
 .cards_visible {
   display: block;
 }
@@ -41,9 +60,7 @@
   border-style: none;
   color: #1a1b22;
   background-color: #fff;
-  font-size: 18px;
   font-weight: 500;
-  line-height: 24px;
 }
 
 .cards__show-more:hover,
