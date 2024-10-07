@@ -5,7 +5,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <p className="footer__credit">
-        &#169; 2024 Riley Marcum, Powered by{" "}
+        &#169; 2024 Riley Marcum, powered by{" "}
         <a href="https://newsapi.org/" className="footer__api-link">
           newsapi.org
         </a>
@@ -21,7 +21,7 @@ export default function Footer() {
           <img
             src="../src/assets/github-icon.svg"
             alt="github link icon"
-            className="footer__link-img"
+            className="footer__link footer__link-img"
           />
         </a>
       </div>

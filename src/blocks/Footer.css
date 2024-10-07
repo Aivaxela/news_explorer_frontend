@@ -39,6 +39,11 @@
   text-decoration: none;
 }
 
+.footer__link:focus,
+.footer__link:hover {
+  opacity: 50%;
+}
+
 .footer__link-img {
   margin: 0;
   width: 24px;
