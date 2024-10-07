@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import "../blocks/NewsCardList.css";
 import NewsCard from "./NewsCard";
 import Preloader from "./Preloader";
@@ -8,6 +9,7 @@ export default function NewsCardList({
   searchResults,
   searchResultsShown,
   showMoreResults,
+  showNothingFound,
 }) {
   return (
     <>
@@ -18,6 +20,21 @@ export default function NewsCardList({
       >
         <Preloader />
         <p className="cards__loading-title">Searching for news...</p>
+      </div>
+      <div
+        className={`cards__nothing-found ${
+          showNothingFound ? "cards__nothing-found_visible" : ""
+        }`}
+      >
+        <img
+          src="../src/assets/not-found_v1.svg"
+          alt="nothing found image"
+          className="cards__nothing-found-image"
+        />
+        <h3 className="cards__nothing-found-title">Nothing found</h3>
+        <p className="cards__nothing-found-description">
+          Sorry, but nothing matched your search terms.
+        </p>
       </div>
       <section className={`cards ${resultsVisible ? "cards_visible" : ""}`}>
         <h2 className="cards__title">Search results</h2>

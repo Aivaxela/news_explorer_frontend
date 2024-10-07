@@ -15,21 +15,23 @@ export default function App() {
   const [searchResults, setSearchResults] = useState([]);
   const [searchResultsShown, setSearchResultsShown] = useState(3);
   const [searchResultsAvailable, setSearchResultsAvailable] = useState(0);
+  const [showNothingFound, setShowNothingFound] = useState(false);
 
   const api = new Api({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
     apiKey: "a16de474931b4e5a83f83ad53ba3df69",
-    searchQuery: searchQuery,
   });
 
   const handleSearchSubmit = (query) => {
     setResultsLoading(true);
+    setShowNothingFound(false);
     api
       .getNewsArticles(query)
       .then((res) => {
         setResultsVisible(res.totalResults > 0 ? true : false);
         setSearchResultsAvailable(res.totalResults > 0 ? res.totalResults : 0);
         setSearchResults(res.totalResults > 0 ? res.articles : []);
+        setShowNothingFound(res.totalResults <= 0 ? true : false);
       })
       .catch((err) => console.log(err)) //TODO: handle this error properly
       .finally(() => setResultsLoading(false));
@@ -61,6 +63,7 @@ export default function App() {
                 searchResults={searchResults}
                 searchResultsShown={searchResultsShown}
                 showMoreResults={showMoreResults}
+                showNothingFound={showNothingFound}
               ></Main>
             }
           />

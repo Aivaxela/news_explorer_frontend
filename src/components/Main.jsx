@@ -11,6 +11,7 @@ export default function Main({
   searchResults,
   searchResultsShown,
   showMoreResults,
+  showNothingFound,
 }) {
   return (
     <>
@@ -29,6 +30,7 @@ export default function Main({
         searchResultsShown={searchResultsShown}
         showMoreResults={showMoreResults}
         resultsLoading={resultsLoading}
+        showNothingFound={showNothingFound}
       />
       <About />
     </>
