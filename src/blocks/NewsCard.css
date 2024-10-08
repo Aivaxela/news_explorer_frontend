@@ -5,6 +5,7 @@
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
+  position: relative;
 }
 
 .card__text-container {
@@ -18,7 +19,6 @@
   width: 400px;
   height: 272px;
   object-fit: cover;
-  position: relative;
 }
 
 .card__date {
@@ -65,7 +65,58 @@
   white-space: nowrap;
 }
 
-.card__bookmark-button {
+.card__bookmark {
   position: absolute;
-  top: 15px;
+  display: flex;
+  top: 24px;
+  right: 24px;
+  gap: 5px;
+}
+
+.card__bookmark-to-signin-button {
+  width: 182px;
+  height: 40px;
+  opacity: 0%;
+  pointer-events: none;
+  background-color: #fff;
+  font-size: 12px;
+  line-height: 14px;
+  font-weight: 500;
+  border-radius: 10px;
+  cursor: pointer;
+  border: none;
+  transform: translateX(100px);
+  transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+    opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.card__bookmark:hover .card__bookmark-to-signin-button {
+  pointer-events: all;
+  opacity: 100%;
+  transform: translateX(0);
+}
+
+.card__bookmark-to-signin-button:hover {
+  background-color: #e8e8e8;
+}
+
+.card__bookmark-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  background-color: #fff;
+  cursor: pointer;
+  border: none;
+}
+
+.card__bookmark-button-img {
+  opacity: 40%;
+}
+
+.card__bookmark-button:hover .card__bookmark-button-img,
+.card__bookmark-button:focus .card__bookmark-button-img {
+  opacity: 100%;
 }

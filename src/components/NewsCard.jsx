@@ -15,11 +15,26 @@ export default function NewsCard({
 
   return (
     <div className="card">
-      <img
-        src="../src/assets/bookmark.svg"
-        alt="boomark button on news article card"
-        className="card__bookmark-button"
-      />
+      <div className="card__bookmark">
+        <button
+          className="card__bookmark-to-signin-button"
+          type="button"
+          onClick={() => {}} //do stuff
+        >
+          Sign in to save articles
+        </button>
+        <button
+          className="card__bookmark-button"
+          type="button"
+          onClick={() => {}} //do stuff
+        >
+          <img
+            src="../src/assets/bookmark.svg"
+            alt="boomark button on news article card"
+            className="card__bookmark-button-img"
+          />
+        </button>
+      </div>
       <img src={urlToImage} alt="" className="card__image" />
       <div className="card__text-container">
         <time className="card__date" dateTime="2024-10-04">
