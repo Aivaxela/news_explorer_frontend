@@ -18,6 +18,7 @@
   width: 400px;
   height: 272px;
   object-fit: cover;
+  position: relative;
 }
 
 .card__date {
@@ -62,4 +63,9 @@
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.card__bookmark-button {
+  position: absolute;
+  top: 15px;
 }

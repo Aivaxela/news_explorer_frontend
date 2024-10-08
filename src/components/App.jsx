@@ -9,7 +9,7 @@ import Api from "../utils/newsApi";
 import { testData } from "../utils/testData";
 
 export default function App() {
-  const [resultsVisible, setResultsVisible] = useState(false); //TODO: set default to false
+  const [resultsVisible, setResultsVisible] = useState(true); //TODO: set default to false
   const [resultsLoading, setResultsLoading] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const [searchResults, setSearchResults] = useState([]);
@@ -51,8 +51,8 @@ export default function App() {
     );
 
   useEffect(() => {
-    // setSearchResults(Array.from(testData.articles)); //TODO: TEST DATA
-    // setSearchResultsAvailable(testData.totalResults); //TODO: TEST DATA
+    setSearchResults(Array.from(testData.articles)); //TODO: TEST DATA
+    setSearchResultsAvailable(testData.totalResults); //TODO: TEST DATA
   }, []);
 
   return (

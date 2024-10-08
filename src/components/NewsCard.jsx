@@ -15,6 +15,11 @@ export default function NewsCard({
 
   return (
     <div className="card">
+      <img
+        src="../src/assets/bookmark.svg"
+        alt="boomark button on news article card"
+        className="card__bookmark-button"
+      />
       <img src={urlToImage} alt="" className="card__image" />
       <div className="card__text-container">
         <time className="card__date" dateTime="2024-10-04">
