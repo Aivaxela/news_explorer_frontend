@@ -25,12 +25,18 @@ export default function App() {
   const handleSearchSubmit = (query) => {
     setResultsLoading(true);
     setShowNothingFound(false);
+    setResultsVisible(false);
+    setSearchResultsShown(3);
     api
       .getNewsArticles(query)
       .then((res) => {
         setResultsVisible(res.totalResults > 0 ? true : false);
         setSearchResultsAvailable(res.totalResults > 0 ? res.totalResults : 0);
-        setSearchResults(res.totalResults > 0 ? res.articles : []);
+        setSearchResults(
+          res.totalResults > 0
+            ? res.articles.filter((article) => article.title !== "[Removed]")
+            : []
+        );
         setShowNothingFound(res.totalResults <= 0 ? true : false);
       })
       .catch((err) => console.log(err)) //TODO: handle this error properly
