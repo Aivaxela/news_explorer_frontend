@@ -46,7 +46,7 @@ export default function App() {
   const showMoreResults = () =>
     setSearchResultsShown(
       searchResultsAvailable > searchResultsShown
-        ? searchResultsShown + 3
+        ? Math.min(searchResultsShown + 3, 100)
         : searchResultsShown
     );
 

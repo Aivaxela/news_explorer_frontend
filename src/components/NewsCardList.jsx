@@ -58,7 +58,11 @@ export default function NewsCardList({
             })}
           </ul>
           <button
-            className="cards__show-more"
+            className={`cards__show-more ${
+              searchResults.length > searchResultsShown
+                ? "cards__show-more_visible"
+                : ""
+            } `}
             type="button"
             onClick={() => showMoreResults()}
           >
