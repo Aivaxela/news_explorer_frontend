@@ -73,12 +73,16 @@
 }
 
 .cards__list {
-  display: grid;
+  display: none;
   grid-template-columns: repeat(auto-fit, minmax(400px, min-content));
   grid-gap: 16px 16px;
   justify-content: center;
   margin: 0;
   padding: 0;
+}
+
+.cards__list_visible {
+  display: grid;
 }
 
 .cards__show-more {

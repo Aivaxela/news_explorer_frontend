@@ -1,21 +1,24 @@
 import "../blocks/NewsCardList.css";
+import { useContext } from "react";
+import { SearchContext } from "../contexts/searchContext";
 import NewsCard from "./NewsCard";
 import Preloader from "./Preloader";
 
-export default function NewsCardList({
-  resultsVisible,
-  resultsLoading,
-  searchResults,
-  searchResultsShown,
-  showMoreResults,
-  showNothingFound,
-}) {
+export default function NewsCardList() {
+  const { searchState, setSearchState } = useContext(SearchContext);
+
+  const showMoreResults = () =>
+    setSearchState((currState) => ({
+      ...currState,
+      articlesShown: Math.min(searchState.articlesShown + 3, 100),
+    }));
+
   return (
     <>
       <section className="cards">
         <div
           className={`cards__loading ${
-            resultsLoading ? "cards__loading_visible" : ""
+            searchState.loading ? "cards__loading_visible" : ""
           }`}
         >
           <Preloader />
@@ -23,7 +26,7 @@ export default function NewsCardList({
         </div>
         <div
           className={`cards__nothing-found ${
-            showNothingFound ? "cards__nothing-found_visible" : ""
+            searchState.nothingFound ? "cards__nothing-found_visible" : ""
           }`}
         >
           <img
@@ -38,15 +41,23 @@ export default function NewsCardList({
         </div>
         <div
           className={`cards__elements ${
-            resultsVisible ? "cards__elements_visible" : ""
+            searchState.results.length > 0 && !searchState.loading
+              ? "cards__elements_visible"
+              : ""
           }`}
         >
           <h2 className="cards__title">Search results</h2>
-          <ul className="cards__list">
-            {searchResults.map((result, i) => {
+          <ul
+            className={`cards__list ${
+              searchState.loading ? "" : "cards__list_visible"
+            }`}
+          >
+            {searchState.results.map((result, i) => {
               //TODO: replace key i with unique ID after backend integrated
 
-              if (searchResults.indexOf(result) < searchResultsShown) {
+              if (
+                searchState.results.indexOf(result) < searchState.articlesShown
+              ) {
                 return (
                   <NewsCard
                     urlToImage={result.urlToImage}
@@ -62,7 +73,7 @@ export default function NewsCardList({
           </ul>
           <button
             className={`cards__show-more ${
-              searchResults.length > searchResultsShown
+              searchState.results.length > searchState.articlesShown
                 ? "cards__show-more_visible"
                 : ""
             } `}

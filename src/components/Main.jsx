@@ -4,34 +4,19 @@ import About from "../components/About";
 import SearchForm from "./SearchForm";
 import NewsCardList from "./NewsCardList";
 
-export default function Main({
-  resultsVisible,
-  resultsLoading,
-  handleSearchSubmit,
-  searchResults,
-  searchResultsShown,
-  showMoreResults,
-  showNothingFound,
-}) {
+export default function Main({ handleSearchSubmit, userContext }) {
   return (
     <>
       <main className="main">
-        <Nav />
-        <h1 className="main__title">What's going on in the world?</h1>
+        <Nav userContext={userContext} />
+        <h1 className="main__title">What&#39;s going on in the world?</h1>
         <p className="main__subtitle">
           Find the latest news on any topic and save them in your personal
           account.
         </p>
         <SearchForm handleSearchSubmit={handleSearchSubmit} />
       </main>
-      <NewsCardList
-        resultsVisible={resultsVisible}
-        searchResults={searchResults}
-        searchResultsShown={searchResultsShown}
-        showMoreResults={showMoreResults}
-        resultsLoading={resultsLoading}
-        showNothingFound={showNothingFound}
-      />
+      <NewsCardList />
       <About />
     </>
   );
