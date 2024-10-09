@@ -1,12 +1,12 @@
 import "../blocks/App.css";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { SearchContext } from "../contexts/searchContext";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
 import Api from "../utils/newsApi";
-import { testData } from "../utils/testData"; //TODO: TEST DATA - remove before deployment
+import { TEST_DATA } from "../utils/testData"; //TODO: TEST DATA - remove before deployment
 
 export default function App() {
   const [searchState, setSearchState] = useState({
@@ -16,6 +16,10 @@ export default function App() {
     loading: false,
     nothingFound: false,
   });
+  const [userState, setUserState] = useState({
+    loggedIn: false,
+    username: "Riley",
+  });
 
   const api = new Api({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
@@ -23,8 +27,8 @@ export default function App() {
   });
 
   const handleSearchSubmit = (query) => {
-    setSearchState((state) => ({
-      ...state,
+    setSearchState((currState) => ({
+      ...currState,
       loading: true,
       nothingFound: false,
       articlesShown: 3,
@@ -32,8 +36,8 @@ export default function App() {
     api
       .getNewsArticles(query)
       .then((res) => {
-        setSearchState((state) => ({
-          ...state,
+        setSearchState((currState) => ({
+          ...currState,
           articlesAvail: res.totalResults,
           results: res.articles.filter(
             (article) => article.title !== "[Removed]"
@@ -42,17 +46,29 @@ export default function App() {
         }));
       })
       .catch((err) => console.log(err)) //TODO: handle this error properly
-      .finally(() => setSearchState((state) => ({ ...state, loading: false })));
+      .finally(() =>
+        setSearchState((currState) => ({ ...currState, loading: false }))
+      );
   };
 
   useEffect(() => {
-    // setSearchResults(Array.from(testData.articles)); //TODO: TEST DATA
-    // setSearchResultsAvailable(testData.totalResults); //TODO: TEST DATA
+    //TODO: TEST DATA - remove before deployment
+    setSearchState((currState) => ({
+      ...currState,
+      results: Array.from(TEST_DATA.articles),
+      articlesAvail: TEST_DATA.totalResults,
+      loading: false,
+    }));
   }, []);
 
   const searchContext = {
     searchState,
     setSearchState,
+  };
+
+  const userContext = {
+    userState,
+    setUserState,
   };
 
   return (
@@ -62,7 +78,12 @@ export default function App() {
           <Routes>
             <Route
               path="/"
-              element={<Main handleSearchSubmit={handleSearchSubmit}></Main>}
+              element={
+                <Main
+                  handleSearchSubmit={handleSearchSubmit}
+                  userContext={userContext}
+                ></Main>
+              }
             />
             <Route path="/saved-news" element={<SavedNews></SavedNews>} />
             <Route path="*" element={<Navigate to="/" replace />} />

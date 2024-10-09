@@ -1,4 +1,4 @@
-export const testData = {
+export const TEST_DATA = {
   status: "ok",
   totalResults: 34,
   articles: [

@@ -8,8 +8,8 @@ export default function NewsCardList() {
   const { searchState, setSearchState } = useContext(SearchContext);
 
   const showMoreResults = () =>
-    setSearchState((state) => ({
-      ...state,
+    setSearchState((currState) => ({
+      ...currState,
       articlesShown: Math.min(searchState.articlesShown + 3, 100),
     }));
 
