@@ -43,11 +43,24 @@
 }
 
 .nav__nav-item-group {
-  padding: 8px 15px;
+  padding: 11px 15px;
   display: flex;
   border-radius: 100px;
   border: solid 2px #fff;
   text-decoration: none;
+}
+
+.nav__signin-button {
+  width: 176px;
+  height: 48px;
+  display: flex;
+  border-radius: 100px;
+  border: solid 2px #fff;
+  text-decoration: none;
+  background-color: transparent;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
 }
 
 .nav__nav-item-group:hover,

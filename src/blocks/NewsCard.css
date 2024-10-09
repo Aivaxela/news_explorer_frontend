@@ -108,8 +108,12 @@
   height: 40px;
   border-radius: 8px;
   background-color: #fff;
-  cursor: pointer;
+  cursor: not-allowed;
   border: none;
+}
+
+.card__bookmark-button_allowed {
+  cursor: pointer;
 }
 
 .card__bookmark-button-img {

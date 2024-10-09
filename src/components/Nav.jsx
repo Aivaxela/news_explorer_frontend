@@ -14,6 +14,7 @@ export default function Nav() {
         <Link to="/saved-news" className="nav__nav-item">
           Saved Articles
         </Link>
+        <button className="nav__signin-button">Sign in</button>
         <Link to="/profile" className="nav__nav-item-group">
           <div className="nav__user-icon-logout">
             <p className="nav__username">Riley</p>

@@ -1,10 +1,13 @@
 import "../blocks/Preloader.css";
+import { useContext } from "react";
+import { SearchContext } from "../contexts/searchContext";
 
-export default function Preloader({ resultsLoading }) {
+export default function Preloader() {
+  const { searchState } = useContext(SearchContext);
   return (
     <div
       className={`circle-preloader ${
-        !resultsLoading ? "circle-preloader_hidden" : ""
+        !searchState.loading ? "circle-preloader_hidden" : ""
       }`}
     ></div>
   );

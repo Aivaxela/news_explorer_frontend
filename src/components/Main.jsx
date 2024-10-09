@@ -4,15 +4,7 @@ import About from "../components/About";
 import SearchForm from "./SearchForm";
 import NewsCardList from "./NewsCardList";
 
-export default function Main({
-  resultsVisible,
-  resultsLoading,
-  handleSearchSubmit,
-  searchResults,
-  searchResultsShown,
-  showMoreResults,
-  showNothingFound,
-}) {
+export default function Main({ handleSearchSubmit }) {
   return (
     <>
       <main className="main">
@@ -24,14 +16,7 @@ export default function Main({
         </p>
         <SearchForm handleSearchSubmit={handleSearchSubmit} />
       </main>
-      <NewsCardList
-        resultsVisible={resultsVisible}
-        searchResults={searchResults}
-        searchResultsShown={searchResultsShown}
-        showMoreResults={showMoreResults}
-        resultsLoading={resultsLoading}
-        showNothingFound={showNothingFound}
-      />
+      <NewsCardList />
       <About />
     </>
   );
