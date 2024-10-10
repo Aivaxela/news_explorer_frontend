@@ -5,6 +5,7 @@ import { SearchContext } from "../contexts/searchContext";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
+import SigninModal from "../components/SigninModal";
 import Api from "../utils/newsApi";
 import { TEST_DATA } from "../utils/testData"; //TODO: TEST DATA - remove before deployment
 
@@ -51,15 +52,15 @@ export default function App() {
       );
   };
 
-  useEffect(() => {
-    //TODO: TEST DATA - remove before deployment
-    setSearchState((currState) => ({
-      ...currState,
-      results: Array.from(TEST_DATA.articles),
-      articlesAvail: TEST_DATA.totalResults,
-      loading: false,
-    }));
-  }, []);
+  // useEffect(() => {
+  //   //TODO: TEST DATA - remove before deployment
+  //   setSearchState((currState) => ({
+  //     ...currState,
+  //     results: Array.from(TEST_DATA.articles),
+  //     articlesAvail: TEST_DATA.totalResults,
+  //     loading: false,
+  //   }));
+  // }, []);
 
   const searchContext = {
     searchState,
@@ -89,6 +90,7 @@ export default function App() {
             <Route path="*" element={<Navigate to="/" replace />} />
           </Routes>
           <Footer />
+          <SigninModal />
         </SearchContext.Provider>
       </div>
     </div>
