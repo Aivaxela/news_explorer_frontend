@@ -1,6 +1,6 @@
 import "../blocks/NewsCardList.css";
 import { useContext } from "react";
-import { SearchContext } from "../contexts/searchContext";
+import { SearchContext } from "../contexts/SearchContext";
 import NewsCard from "./NewsCard";
 import Preloader from "./Preloader";
 

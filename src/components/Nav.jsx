@@ -1,4 +1,4 @@
-import "../blocks/nav.css";
+import "../blocks/Nav.css";
 import { Link } from "react-router-dom";
 
 export default function Nav({ userContext }) {

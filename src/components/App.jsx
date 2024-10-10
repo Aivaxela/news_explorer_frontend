@@ -1,7 +1,7 @@
 import "../blocks/App.css";
 import { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-import { SearchContext } from "../contexts/searchContext";
+import { SearchContext } from "../contexts/SearchContext";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";

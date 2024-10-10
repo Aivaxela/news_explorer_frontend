@@ -1,6 +1,6 @@
 import "../blocks/Preloader.css";
 import { useContext } from "react";
-import { SearchContext } from "../contexts/searchContext";
+import { SearchContext } from "../contexts/SearchContext";
 
 export default function Preloader() {
   const { searchState } = useContext(SearchContext);
