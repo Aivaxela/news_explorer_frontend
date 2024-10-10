@@ -1,7 +1,31 @@
 @font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/inter-400-regular.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/inter-400-regular.woff2);
+  font-family: "Inter-reg";
+}
+
+@font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/inter-500.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/inter-500.woff2);
+  font-family: "Inter-500";
+}
+
+@font-face {
   src: url(../vendor/moved_final-project_fonts_latin/roboto-400-regular.woff);
   src: url(../vendor/moved_final-project_fonts_latin/roboto-400-regular.woff2);
-  font-family: "Roboto";
+  font-family: "Roboto-reg";
+}
+
+@font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-500.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-500.woff2);
+  font-family: "Roboto-500";
+}
+
+@font-face {
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-700.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-700.woff2);
+  font-family: "Roboto-700";
 }
 
 @font-face {
@@ -13,13 +37,13 @@
 @font-face {
   src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-400-regular.woff);
   src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-400-regular.woff2);
-  font-family: "Roboto-Slab";
+  font-family: "Roboto-Slab-reg";
 }
 
 @font-face {
-  src: url(../vendor/moved_final-project_fonts_latin/inter-400-regular.woff);
-  src: url(../vendor/moved_final-project_fonts_latin/inter-400-regular.woff2);
-  font-family: "Inter";
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-700.woff);
+  src: url(../vendor/moved_final-project_fonts_latin/roboto-slab-700.woff2);
+  font-family: "Roboto-Slab-700";
 }
 
 .page__content {

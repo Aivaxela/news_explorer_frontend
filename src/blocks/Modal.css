@@ -48,14 +48,14 @@
   color: #2f71e5;
   font-size: 12px;
   line-height: 14.5px;
-  font-family: "Inter", "Arial", sans-serif;
+  font-family: "Inter-reg", "Arial", sans-serif;
 }
 
 .modal__input {
   padding: 8px 0 0;
   width: 358px;
   display: block;
-  font-family: "Inter", "Arial", sans-serif;
+  font-family: "Inter-reg", "Arial", sans-serif;
   font-size: 14px;
   line-height: 17px;
   border-width: 0 0 1px 0;
