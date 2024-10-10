@@ -1,7 +1,11 @@
 import "../blocks/Nav.css";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
-export default function Nav({ userContext }) {
+export default function Nav() {
+  const {userState} = useContext(UserContext);
+
   return (
     <nav className="nav">
       <Link to="/" className="nav__title">
@@ -14,14 +18,14 @@ export default function Nav({ userContext }) {
         <Link
           to="/saved-news"
           className={`nav__nav-item ${
-            userContext.userState.loggedIn ? "nav__nav-item_visible" : ""
+            userState.loggedIn ? "nav__nav-item_visible" : ""
           }`}
         >
           Saved Articles
         </Link>
         <button
           className={`nav__signin-button ${
-            userContext.userState.loggedIn ? "" : "nav__signin-button_visible"
+            userState.loggedIn ? "" : "nav__signin-button_visible"
           }`}
         >
           Sign in
@@ -29,11 +33,11 @@ export default function Nav({ userContext }) {
         <Link
           to="/profile"
           className={`nav__nav-item-group ${
-            userContext.userState.loggedIn ? "nav__nav-item-group_visible" : ""
+            userState.loggedIn ? "nav__nav-item-group_visible" : ""
           }`}
         >
           <div className="nav__user-icon-logout">
-            <p className="nav__username">{userContext.userState.username}</p>
+            <p className="nav__username">{userState.username}</p>
             <img
               src="../src/assets/logout.svg"
               alt="logout icon"

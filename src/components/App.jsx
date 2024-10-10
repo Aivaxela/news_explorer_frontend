@@ -2,6 +2,7 @@ import "../blocks/App.css";
 import { useEffect, useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
+import { UserContext } from "../contexts/UserContext";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
@@ -52,15 +53,15 @@ export default function App() {
       );
   };
 
-  // useEffect(() => {
-  //   //TODO: TEST DATA - remove before deployment
-  //   setSearchState((currState) => ({
-  //     ...currState,
-  //     results: Array.from(TEST_DATA.articles),
-  //     articlesAvail: TEST_DATA.totalResults,
-  //     loading: false,
-  //   }));
-  // }, []);
+  useEffect(() => {
+    //TODO: TEST DATA - remove before deployment
+    setSearchState((currState) => ({
+      ...currState,
+      results: Array.from(TEST_DATA.articles),
+      articlesAvail: TEST_DATA.totalResults,
+      loading: false,
+    }));
+  }, []);
 
   const searchContext = {
     searchState,
@@ -76,13 +77,13 @@ export default function App() {
     <div className="page">
       <div className="page__content">
         <SearchContext.Provider value={searchContext}>
+          <UserContext.Provider value={userContext}>
           <Routes>
             <Route
               path="/"
               element={
                 <Main
                   handleSearchSubmit={handleSearchSubmit}
-                  userContext={userContext}
                 ></Main>
               }
             />
@@ -91,6 +92,7 @@ export default function App() {
           </Routes>
           <Footer />
           <SigninModal />
+          </UserContext.Provider>
         </SearchContext.Provider>
       </div>
     </div>
