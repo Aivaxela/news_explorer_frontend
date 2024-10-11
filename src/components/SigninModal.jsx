@@ -15,10 +15,12 @@ export default function SigninModal({ isVisible }) {
     e.preventDefault();
     setUserState({
       ...userState,
+      loggedIn: true,
       username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
       email: values.email,
       password: values.password,
     });
+    setActiveModal("");
   };
 
   return (
