@@ -69,6 +69,7 @@
   color: #fff;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .nav__signin-button_visible {

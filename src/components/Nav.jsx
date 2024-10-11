@@ -2,9 +2,11 @@ import "../blocks/Nav.css";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
+import { AppContext } from "../contexts/AppContext";
 
 export default function Nav() {
-  const {userState} = useContext(UserContext);
+  const { userState } = useContext(UserContext);
+  const { setActiveModal } = useContext(AppContext);
 
   return (
     <nav className="nav">
@@ -27,6 +29,7 @@ export default function Nav() {
           className={`nav__signin-button ${
             userState.loggedIn ? "" : "nav__signin-button_visible"
           }`}
+          onClick={() => setActiveModal("signin")}
         >
           Sign in
         </button>
