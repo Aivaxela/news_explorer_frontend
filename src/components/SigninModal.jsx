@@ -11,10 +11,9 @@ export default function SigninModal({ isVisible }) {
   const { values, errors, isValid, handleChange } = useFormValidation();
 
   const handleSubmit = (e) => {
-    if (!isValid) return;
     e.preventDefault();
+    if (!isValid) return;
     setUserState({
-      ...userState,
       loggedIn: true,
       username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
       email: values.email,
@@ -24,7 +23,7 @@ export default function SigninModal({ isVisible }) {
   };
 
   return (
-    <ModalWithForm isVisible={isVisible} handleSubmit={handleSubmit}>
+    <ModalWithForm isVisible={isVisible} handleSubmit={handleSubmit} formTitle={"Sign in"}>
       <label htmlFor="email-signin" className="modal__label">
         Email
         <input

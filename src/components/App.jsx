@@ -10,6 +10,7 @@ import SavedNews from "../components/SavedNews";
 import SigninModal from "../components/SigninModal";
 import Api from "../utils/newsApi";
 import { TEST_DATA } from "../utils/testData"; //TODO: TEST DATA - remove before deployment
+import SignupModal from "./SignupModal";
 
 export default function App() {
   const [searchState, setSearchState] = useState({
@@ -108,6 +109,9 @@ export default function App() {
               <Footer />
               <SigninModal
                 isVisible={activeModal === "signin" ? true : false}
+              />
+              <SignupModal
+                isVisible={activeModal === "signup" ? true : false}
               />
             </AppContext.Provider>
           </UserContext.Provider>
