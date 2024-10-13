@@ -95,6 +95,10 @@
   display: flex;
   gap: 10px;
   align-items: center;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  cursor: pointer;
 }
 
 .nav__username {

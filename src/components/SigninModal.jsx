@@ -6,19 +6,20 @@ import { AppContext } from "../contexts/AppContext";
 import { useFormValidation } from "../utils/useFormValidation";
 
 export default function SigninModal({ isVisible }) {
-  const { setUserState } = useContext(UserContext);
+  const { userState, setUserState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
   const { values, errors, isValid, handleChange } = useFormValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isValid) return;
-    setUserState({
+    setUserState((userState) => ({
+      ...userState,
       loggedIn: true,
       username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
       email: values.email,
       password: values.password,
-    });
+    }));
     setActiveModal("");
   };
 

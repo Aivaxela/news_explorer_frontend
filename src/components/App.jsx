@@ -25,6 +25,7 @@ export default function App() {
     email: "",
     password: "",
     username: "",
+    savedNews: [],
   });
   const [activeModal, setActiveModal] = useState("");
 

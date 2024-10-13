@@ -72,7 +72,7 @@
   gap: 5px;
 }
 
-.card__bookmark-to-signin-button {
+.card__bookmark-signin {
   width: 182px;
   height: 40px;
   opacity: 0%;
@@ -89,14 +89,18 @@
     opacity 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
-.card__bookmark:hover .card__bookmark-to-signin-button {
+.card__bookmark:hover .card__bookmark-signin {
   pointer-events: all;
   opacity: 100%;
   transform: translateX(0);
 }
 
-.card__bookmark-to-signin-button:hover {
+.card__bookmark-signin:hover {
   background-color: #e8e8e8;
+}
+
+.card__bookmark-signin_inactive {
+  display: none;
 }
 
 .card__bookmark-button {
@@ -107,16 +111,21 @@
   height: 40px;
   border-radius: 8px;
   background-color: #fff;
-  cursor: not-allowed;
+  pointer-events: none;
   border: none;
 }
 
 .card__bookmark-button_allowed {
   cursor: pointer;
+  pointer-events: all;
 }
 
 .card__bookmark-button-img {
   opacity: 40%;
+}
+
+.card__bookmark-button-img_filled {
+  opacity: 100%;
 }
 
 .card__bookmark-button:hover .card__bookmark-button-img,
