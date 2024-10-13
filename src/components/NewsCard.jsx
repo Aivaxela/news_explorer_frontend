@@ -100,17 +100,16 @@ export default function NewsCard({
         </button>
       </div>
       <Link to={`${urlToImage}`}>
-      
-      <img src={urlToImage} alt="" className="card__image" />
-      <div className="card__text-container">
-        <time className="card__date" dateTime="2024-10-04">
-          {publishedAtFormatted}
-        </time>
-        <h3 className="card__title">{title}</h3>
-        <p className="card__description">{description}</p>
-        <p className="card__source">{source}</p>
-      </div>
+        <img src={urlToImage} alt="" className="card__image" />
+        <div className="card__text-container">
+          <time className="card__date" dateTime="2024-10-04">
+            {publishedAtFormatted}
+          </time>
+          <h3 className="card__title">{title}</h3>
+          <p className="card__description">{description}</p>
+          <p className="card__source">{source}</p>
+        </div>
+      </Link>
     </div>
-    </Link>
   );
 }
