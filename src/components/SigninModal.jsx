@@ -6,7 +6,7 @@ import { AppContext } from "../contexts/AppContext";
 import { useFormValidation } from "../utils/useFormValidation";
 
 export default function SigninModal({ isVisible }) {
-  const { userState, setUserState } = useContext(UserContext);
+  const { setUserState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
   const { values, errors, isValid, handleChange } = useFormValidation();
 
@@ -23,7 +23,11 @@ export default function SigninModal({ isVisible }) {
   };
 
   return (
-    <ModalWithForm isVisible={isVisible} handleSubmit={handleSubmit} formTitle={"Sign in"}>
+    <ModalWithForm
+      isVisible={isVisible}
+      handleSubmit={handleSubmit}
+      formTitle={"Sign in"}
+    >
       <label htmlFor="email-signin" className="modal__label">
         Email
         <input
