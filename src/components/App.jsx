@@ -16,6 +16,7 @@ import SignupModal from "./SignupModal";
 export default function App() {
   const [searchState, setSearchState] = useState({
     results: [],
+    keyword: "",
     articlesAvail: 0,
     articlesShown: 3,
     loading: false,
@@ -27,6 +28,7 @@ export default function App() {
     password: "",
     username: "",
     savedNews: [],
+    savedKeywords: [],
   });
   const [activeModal, setActiveModal] = useState("");
 
@@ -62,6 +64,7 @@ export default function App() {
       .then((res) => {
         setSearchState((currState) => ({
           ...currState,
+          keyword: query,
           articlesAvail: res.totalResults,
           results: res.articles.filter(
             (article) => article.title !== "[Removed]"

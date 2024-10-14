@@ -11,7 +11,9 @@ export default function SavedNews() {
       <section className="saved">
         <p className="saved__subheader">Saved articles</p>
         <h1 className="saved__header">
-          {userState.username}, you have 5 saved articles
+          {userState.username}, you have {userState.savedNews.length} saved
+          article
+          <span>{userState.savedNews.length === 1 ? "" : "s"}</span>
         </h1>
         <p className="saved__keywords">
           By keywords:{" "}

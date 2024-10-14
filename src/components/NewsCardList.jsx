@@ -3,9 +3,13 @@ import { useContext } from "react";
 import { SearchContext } from "../contexts/SearchContext";
 import NewsCard from "./NewsCard";
 import Preloader from "./Preloader";
+import { useLocation } from "react-router-dom";
+import { UserContext } from "../contexts/UserContext";
 
 export default function NewsCardList() {
   const { searchState, setSearchState } = useContext(SearchContext);
+  const { userState } = useContext(UserContext);
+  const location = useLocation();
 
   const showMoreResults = () =>
     setSearchState((currState) => ({
@@ -15,7 +19,11 @@ export default function NewsCardList() {
 
   return (
     <>
-      <section className="cards">
+      <section
+        className={`cards ${
+          location.pathname === "/saved-news" ? "cards_hidden" : ""
+        }`}
+      >
         <div
           className={`cards__loading ${
             searchState.loading ? "cards__loading_visible" : ""
@@ -83,6 +91,47 @@ export default function NewsCardList() {
           >
             Show more
           </button>
+        </div>
+      </section>
+      <section
+        className={`cards ${
+          location.pathname === "/saved-news" ? "" : "cards_hidden"
+        }`}
+      >
+        <div className="cards__elements cards__elements_visible">
+          <div
+            className={`cards__nothing-found ${
+              location.pathname === "/saved-news" &&
+              userState.savedNews.length === 0
+                ? "cards__nothing-found_visible"
+                : ""
+            }`}
+          >
+            <img
+              src="../src/assets/not-found_v1.svg"
+              alt="nothing found image"
+              className="cards__nothing-found-image"
+            />
+            <h3 className="cards__nothing-found-title">Nothing found</h3>
+            <p className="cards__nothing-found-description">
+              Articles that you save will appear here.
+            </p>
+          </div>
+          <ul className="cards__list cards__list_visible">
+            {userState.savedNews.map((article) => {
+              return (
+                <NewsCard
+                  urlToImage={article.urlToImage}
+                  title={article.title}
+                  description={article.description}
+                  source={article.source.name}
+                  publishedAt={article.publishedAt}
+                  url={article.url}
+                  key={article.id}
+                />
+              );
+            })}
+          </ul>
         </div>
       </section>
     </>

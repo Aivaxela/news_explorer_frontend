@@ -2,6 +2,8 @@ import "../blocks/NewsCard.css";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
+import { SearchContext } from "../contexts/SearchContext";
+import { v4 as uuidv4 } from "uuid";
 
 export default function NewsCard({
   urlToImage,
@@ -13,6 +15,7 @@ export default function NewsCard({
 }) {
   const { userState, setUserState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
+  const { searchState } = useContext(SearchContext);
   const [bookmarked, setBookmarked] = useState(false);
 
   useEffect(() => {
@@ -21,7 +24,7 @@ export default function NewsCard({
         return article.title == title && article.publishedAt == publishedAt;
       })
     );
-  }, [userState]);
+  }, [userState, title, publishedAt]);
 
   const publishedAtFormatted = new Date(publishedAt).toLocaleString("default", {
     year: "numeric",
@@ -40,23 +43,30 @@ export default function NewsCard({
           source: source,
           publishedAt: publishedAt,
           url: url,
+          id: uuidv4(),
         },
       ];
-      setUserState({
-        ...userState,
-        savedNews: updatedSavedNews,
-      });
-    } else {
-      const updatedSavedNews = [
-        ...userState.savedNews.filter(
-          (article) =>
-            article.title != title && article.publishedAt != publishedAt
-        ),
+      const updatedSavedKeywords = [
+        ...userState.savedKeywords,
+        searchState.keyword,
       ];
       setUserState({
         ...userState,
         savedNews: updatedSavedNews,
+        savedKeywords: updatedSavedKeywords,
       });
+    } else {
+      setUserState({
+        ...userState,
+        savedNews: [
+          ...userState.savedNews.filter(
+            (article) =>
+              article.title != title && article.publishedAt != publishedAt
+          ),
+        ],
+      });
+
+      //TODO: find better way to set saved keywords? populate keywords el from state?
     }
   };
 
@@ -100,7 +110,12 @@ export default function NewsCard({
           />
         </button>
       </div>
-      <a href={`${url}`} target="_blank" className="card__link">
+      <a
+        href={`${url}`}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="card__link"
+      >
         <img src={urlToImage} alt="" className="card__image" />
         <div className="card__text-container">
           <time className="card__date" dateTime="2024-10-04">

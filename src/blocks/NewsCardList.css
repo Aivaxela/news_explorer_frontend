@@ -2,6 +2,10 @@
   background: #f5f6f7;
 }
 
+.cards_hidden {
+  display: none;
+}
+
 .cards__loading {
   display: none;
   flex-direction: column;
