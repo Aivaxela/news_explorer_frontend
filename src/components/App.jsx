@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
+import Nav from "./Nav";
 import Main from "../components/Main";
 import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
@@ -97,6 +98,7 @@ export default function App() {
         <SearchContext.Provider value={searchContext}>
           <UserContext.Provider value={userContext}>
             <AppContext.Provider value={appContext}>
+              <Nav />
               <Routes>
                 <Route
                   path="/"
@@ -104,7 +106,7 @@ export default function App() {
                     <Main handleSearchSubmit={handleSearchSubmit}></Main>
                   }
                 />
-                <Route path="/saved-news" element={<SavedNews></SavedNews>} />
+                <Route path="/saved-news" element={<SavedNews />} />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <Footer />

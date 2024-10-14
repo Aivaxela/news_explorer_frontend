@@ -1,0 +1,21 @@
+.saved {
+  padding-top: 115px;
+}
+
+.saved__subheader {
+  padding: 0;
+  color: #1a1b2280;
+}
+
+.saved__header {
+  margin: 30px 0;
+  padding: 0;
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 400;
+  font-family: "Roboto-Slab-reg", "Arial", sans-serif;
+}
+
+.saved__keywords-bold {
+  font-family: "Roboto-700", "Arial", sans-serif;
+}

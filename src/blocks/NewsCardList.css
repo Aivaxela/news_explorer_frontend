@@ -44,7 +44,6 @@
   margin: 0;
   font-size: 26px;
   line-height: 30px;
-  color: #1a1b22;
 }
 
 .cards__nothing-found-description {
@@ -60,7 +59,6 @@
   line-height: 46px;
   font-weight: 400;
   font-family: "Roboto-Slab-reg", "Arial", sans-serif;
-  color: #1a1b22;
 }
 
 .cards__elements {
@@ -96,7 +94,6 @@
   align-self: center;
   border-radius: 80px;
   border-style: none;
-  color: #1a1b22;
   background-color: #fff;
   font-weight: 500;
 }
