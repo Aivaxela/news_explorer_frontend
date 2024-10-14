@@ -2,7 +2,6 @@ import "../blocks/NewsCard.css";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
-import { Link } from "react-router-dom";
 
 export default function NewsCard({
   urlToImage,
@@ -10,6 +9,7 @@ export default function NewsCard({
   description,
   source,
   publishedAt,
+  url,
 }) {
   const { userState, setUserState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
@@ -39,6 +39,7 @@ export default function NewsCard({
           description: description,
           source: source,
           publishedAt: publishedAt,
+          url: url,
         },
       ];
       setUserState({
@@ -99,7 +100,7 @@ export default function NewsCard({
           />
         </button>
       </div>
-      <Link to={`${urlToImage}`}>
+      <a href={`${url}`} target="_blank" className="card__link">
         <img src={urlToImage} alt="" className="card__image" />
         <div className="card__text-container">
           <time className="card__date" dateTime="2024-10-04">
@@ -109,7 +110,7 @@ export default function NewsCard({
           <p className="card__description">{description}</p>
           <p className="card__source">{source}</p>
         </div>
-      </Link>
+      </a>
     </div>
   );
 }

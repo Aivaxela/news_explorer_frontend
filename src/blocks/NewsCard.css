@@ -15,6 +15,10 @@
   gap: 16px;
 }
 
+.card__link {
+  text-decoration: none;
+}
+
 .card__image {
   width: 400px;
   height: 272px;

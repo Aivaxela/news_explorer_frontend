@@ -65,6 +65,7 @@ export default function NewsCardList() {
                     description={result.description}
                     source={result.source.name}
                     publishedAt={result.publishedAt}
+                    url={result.url}
                     key={i}
                   />
                 );
