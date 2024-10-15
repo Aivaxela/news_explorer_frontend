@@ -17,8 +17,13 @@ export default function SignupModal({ handleSignup, isVisible }) {
   };
 
   useEffect(() => {
-    if (values.password !== values.passwordConfirm)
-      setErrors({ ...errors, passwordConfirm: "Passwords must match" });
+    setErrors({
+      ...errors,
+      passwordConfirm:
+        values.password !== values.passwordConfirm
+          ? "Passwords must match"
+          : "",
+    });
   }, [values.password, values.passwordConfirm]);
 
   return (
@@ -68,6 +73,8 @@ export default function SignupModal({ handleSignup, isVisible }) {
           }`}
           id="password-signup"
           name="password"
+          minLength="8"
+          maxLength="64"
           placeholder="Enter password"
           required
           value={values.password || ""}
