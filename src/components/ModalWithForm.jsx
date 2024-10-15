@@ -1,8 +1,13 @@
-import { useContext } from "react";
 import "../blocks/Modal.css";
+import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 
-export default function ModalWithForm({ children, handleSubmit, isVisible, formTitle }) {
+export default function ModalWithForm({
+  children,
+  handleSubmit,
+  isVisible,
+  formTitle,
+}) {
   const { setActiveModal } = useContext(AppContext);
 
   return (

@@ -78,6 +78,27 @@ export default function App() {
       );
   };
 
+  const handleSignup = (values) => {
+    setUserState({
+      loggedIn: true,
+      username: values.username,
+      email: values.email.split("@")[0], //TODO: replace w username retrieved from DB
+      password: values.password,
+    });
+    closeActiveModal();
+  };
+
+  const handleSignin = (values) => {
+    setUserState({
+      ...userState,
+      loggedIn: true,
+      username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
+      email: values.email,
+      password: values.password,
+    });
+    closeActiveModal();
+  };
+
   const handleSignout = () => {
     setUserState({
       loggedIn: false,
@@ -88,9 +109,13 @@ export default function App() {
     });
   };
 
+  const closeActiveModal = () => {
+    setActiveModal("");
+  };
+
   function listenForEsc() {
     document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") setActiveModal("");
+      if (e.key === "Escape") closeActiveModal();
     });
   }
   listenForEsc();
@@ -124,9 +149,11 @@ export default function App() {
               </Routes>
               <Footer />
               <SigninModal
+                handleSignin={handleSignin}
                 isVisible={activeModal === "signin" ? true : false}
               />
               <SignupModal
+                handleSignup={handleSignup}
                 isVisible={activeModal === "signup" ? true : false}
               />
             </AppContext.Provider>

@@ -1,27 +1,25 @@
 import "../blocks/Modal.css";
-import { useContext } from "react";
-import ModalWithForm from "./ModalWithForm";
-import { UserContext } from "../contexts/UserContext";
+import { useContext, useEffect } from "react";
 import { AppContext } from "../contexts/AppContext";
 import { useFormValidation } from "../utils/useFormValidation";
+import ModalWithForm from "./ModalWithForm";
 
-export default function SignupModal({ isVisible }) {
-  const { setUserState } = useContext(UserContext);
+export default function SignupModal({ handleSignup, isVisible }) {
   const { setActiveModal } = useContext(AppContext);
-  const { values, errors, isValid, handleChange } = useFormValidation();
+  const { values, setErrors, errors, isValid, handleChange, resetForm } =
+    useFormValidation();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (values.password === values.passwordConfirm && isValid) {
-      setUserState({
-        loggedIn: true,
-        username: values.username,
-        email: values.email,
-        password: values.password,
-      });
-      setActiveModal("");
-    }
+    if (!isValid || values.password !== values.passwordConfirm) return;
+    handleSignup(values);
+    resetForm();
   };
+
+  useEffect(() => {
+    if (values.password !== values.passwordConfirm)
+      setErrors({ ...errors, passwordConfirm: "Passwords must match" });
+  }, [values.password, values.passwordConfirm]);
 
   return (
     <ModalWithForm
