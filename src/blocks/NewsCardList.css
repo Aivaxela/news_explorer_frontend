@@ -77,7 +77,7 @@
 
 .cards__list {
   display: none;
-  grid-template-columns: repeat(auto-fit, minmax(400px, min-content));
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
   grid-gap: 16px 16px;
   justify-content: center;
   margin: 0;
@@ -108,4 +108,22 @@
 
 .cards__show-more_visible {
   display: block;
+}
+
+@media screen and (max-width: 950px) {
+  .cards__list {
+    grid-template-columns: repeat(auto-fill, minmax(224px, 1fr));
+    grid-gap: 8px 8px;
+    width: 100%;
+  }
+
+  .cards__title {
+    margin: 0 0 32px 0;
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .cards__elements {
+    padding: 80px 40px;
+  }
 }

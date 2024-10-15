@@ -1,7 +1,5 @@
 .card {
   margin: 0;
-  width: 400px;
-  height: 576px;
   border-radius: 20px;
   overflow: hidden;
   background: #fff;
@@ -21,7 +19,7 @@
 }
 
 .card__image {
-  width: 400px;
+  width: 100%;
   height: 272px;
   object-fit: cover;
 }
@@ -133,4 +131,21 @@
 
 .card__bookmark-button:hover .card__bookmark-button-img {
   opacity: 100%;
+}
+
+@media screen and (max-width: 950px) {
+  .card__image {
+    width: 100%;
+    height: 150px;
+  }
+
+  .card__title {
+    font-size: 22px;
+    line-height: 24px;
+  }
+
+  .card__description {
+    -webkit-line-clamp: 3;
+    line-clamp: 3;
+  }
 }

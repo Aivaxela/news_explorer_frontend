@@ -36,3 +36,24 @@
 .search__btn:hover {
   background-color: #347eff;
 }
+
+@media screen and (max-width: 950px) {
+  .search {
+    width: 452px;
+    padding: 48px 0 48px 0;
+    height: 56px;
+  }
+
+  .search__input {
+    min-width: 452px;
+    height: 56px;
+    padding-left: 24px;
+  }
+
+  .search__btn {
+    top: 48px;
+    right: -16px;
+    width: 160px;
+    height: 62px;
+  }
+}

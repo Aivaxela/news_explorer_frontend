@@ -106,6 +106,7 @@ export default function App() {
       password: "",
       username: "",
       savedNews: [],
+      // savedKeywords: [],
     });
   };
 

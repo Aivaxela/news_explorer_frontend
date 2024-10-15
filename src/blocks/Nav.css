@@ -122,3 +122,18 @@
   filter: invert(0%) sepia(100%) saturate(7444%) hue-rotate(184deg)
     brightness(83%) contrast(111%);
 }
+
+@media screen and (max-width: 950px) {
+  .nav {
+    height: 66px;
+  }
+
+  .nav__title {
+    margin: 0 auto 0 40px;
+  }
+
+  .nav__group {
+    margin: 0 40px 0 auto;
+    gap: 19px;
+  }
+}
