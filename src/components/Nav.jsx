@@ -4,21 +4,11 @@ import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 
-export default function Nav() {
-  const { userState, setUserState } = useContext(UserContext);
+export default function Nav({ handleSignout }) {
+  const { userState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
   const location = useLocation();
   const isNavBlack = location.pathname === "/saved-news" ? true : false;
-
-  const handleSignoutClick = () => {
-    setUserState({
-      loggedIn: false,
-      email: "",
-      password: "",
-      username: "",
-      savedNews: [],
-    });
-  };
 
   return (
     <nav className={`nav ${isNavBlack ? "nav_black" : ""}`}>
@@ -53,10 +43,10 @@ export default function Nav() {
           Sign in
         </button>
         <button
-          className={`nav__nav-logout ${
-            userState.loggedIn ? "nav__nav-logout_visible" : ""
+          className={`nav__logout ${
+            userState.loggedIn ? "nav__logout_visible" : ""
           }`}
-          onClick={() => handleSignoutClick()}
+          onClick={handleSignout}
           type="button"
         >
           <div className="nav__logout-contents">

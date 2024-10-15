@@ -78,6 +78,16 @@ export default function App() {
       );
   };
 
+  const handleSignout = () => {
+    setUserState({
+      loggedIn: false,
+      email: "",
+      password: "",
+      username: "",
+      savedNews: [],
+    });
+  };
+
   function listenForEsc() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") setActiveModal("");
@@ -101,7 +111,7 @@ export default function App() {
         <SearchContext.Provider value={searchContext}>
           <UserContext.Provider value={userContext}>
             <AppContext.Provider value={appContext}>
-              <Nav />
+              <Nav handleSignout={handleSignout} />
               <Routes>
                 <Route
                   path="/"

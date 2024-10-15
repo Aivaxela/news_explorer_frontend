@@ -74,7 +74,11 @@
   display: flex;
 }
 
-.nav__nav-logout {
+.nav__signin-button:hover {
+  opacity: 50%;
+}
+
+.nav__logout {
   padding: 11px 15px;
   display: none;
   border-radius: 100px;
@@ -84,11 +88,11 @@
   cursor: pointer;
 }
 
-.nav__nav-logout_visible {
+.nav__logout_visible {
   display: flex;
 }
 
-.nav__nav-item-group:hover {
+.nav__logout:hover {
   opacity: 50%;
 }
 
