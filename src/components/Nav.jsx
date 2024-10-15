@@ -52,18 +52,15 @@ export default function Nav() {
         >
           Sign in
         </button>
-        <Link
-          to="/profile"
-          className={`nav__nav-item-group ${
-            userState.loggedIn ? "nav__nav-item-group_visible" : ""
+        <button
+          className={`nav__nav-logout ${
+            userState.loggedIn ? "nav__nav-logout_visible" : ""
           }`}
+          onClick={() => handleSignoutClick()}
+          type="button"
         >
-          <button
-            className="nav__user-icon-logout"
-            onClick={() => handleSignoutClick()}
-            type="button"
-          >
-            <p className="nav__username">{userState.username}</p>
+          <div className="nav__logout-contents">
+            <p className="nav__logout-username">{userState.username}</p>
             <img
               src="../src/assets/logout.svg"
               alt="logout icon"
@@ -71,8 +68,8 @@ export default function Nav() {
                 isNavBlack ? "nav__logout-icon_black" : ""
               }`}
             />
-          </button>
-        </Link>
+          </div>
+        </button>
       </div>
     </nav>
   );

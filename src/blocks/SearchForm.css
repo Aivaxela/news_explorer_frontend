@@ -33,7 +33,6 @@
   font-weight: 500;
 }
 
-.search__btn:hover,
-.search__btn:focus {
+.search__btn:hover {
   background-color: #347eff;
 }

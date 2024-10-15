@@ -102,8 +102,7 @@
   font-weight: 500;
 }
 
-.cards__show-more:hover,
-.cards__show-more:focus {
+.cards__show-more:hover {
   background-color: #e8e8e8;
 }
 

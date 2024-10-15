@@ -6,7 +6,12 @@ export default function Footer() {
     <footer className="footer">
       <p className="footer__credit">
         &#169; 2024 Riley Marcum, powered by{" "}
-        <a href="https://newsapi.org/" className="footer__api-link">
+        <a
+          href="https://newsapi.org/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer__api-link"
+        >
           newsapi.org
         </a>
       </p>
@@ -14,10 +19,19 @@ export default function Footer() {
         <Link to="/" className="footer__link">
           Home
         </Link>
-        <Link to="https://tripleten.com" className="footer__link">
+        <a
+          href="https://tripleten.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="footer__link"
+        >
           TripleTen
-        </Link>
-        <a href="https://github.com/Aivaxela">
+        </a>
+        <a
+          href="https://github.com/Aivaxela"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
           <img
             src="../src/assets/github-icon.svg"
             alt="github link icon"

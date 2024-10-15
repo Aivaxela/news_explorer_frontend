@@ -24,8 +24,7 @@
   font-family: "Roboto-Slab-700", "Arial", sans-serif;
 }
 
-.nav__title:hover,
-.nav__title:focus {
+.nav__title:hover {
   opacity: 50%;
 }
 
@@ -58,26 +57,12 @@
   color: inherit;
 }
 
-.nav__nav-item-group {
-  padding: 11px 15px;
-  display: none;
-  border-radius: 100px;
-  border: solid 2px;
-  text-decoration: none;
-  color: inherit;
-}
-
-.nav__nav-item-group_visible {
-  display: flex;
-}
-
 .nav__signin-button {
   width: 176px;
   height: 48px;
   display: none;
   border-radius: 100px;
   border: solid 2px;
-  text-decoration: none;
   background-color: transparent;
   color: inherit;
   justify-content: center;
@@ -89,12 +74,25 @@
   display: flex;
 }
 
-.nav__nav-item-group:hover,
-.nav__nav-item-group:focus {
+.nav__nav-logout {
+  padding: 11px 15px;
+  display: none;
+  border-radius: 100px;
+  border: solid 2px;
+  color: inherit;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.nav__nav-logout_visible {
+  display: flex;
+}
+
+.nav__nav-item-group:hover {
   opacity: 50%;
 }
 
-.nav__user-icon-logout {
+.nav__logout-contents {
   display: flex;
   gap: 10px;
   align-items: center;
@@ -104,7 +102,7 @@
   cursor: pointer;
 }
 
-.nav__username {
+.nav__logout-username {
   font-weight: 500;
   margin: 0;
 }

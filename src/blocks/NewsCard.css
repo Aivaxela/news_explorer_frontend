@@ -131,7 +131,6 @@
   opacity: 100%;
 }
 
-.card__bookmark-button:hover .card__bookmark-button-img,
-.card__bookmark-button:focus .card__bookmark-button-img {
+.card__bookmark-button:hover .card__bookmark-button-img {
   opacity: 100%;
 }

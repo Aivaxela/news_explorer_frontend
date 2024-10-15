@@ -20,8 +20,7 @@
   cursor: pointer;
 }
 
-.footer__api-link:hover,
-.footer__api-link:focus {
+.footer__api-link:hover {
   color: #1a1b22;
 }
 
@@ -37,11 +36,6 @@
   cursor: pointer;
   text-decoration: none;
   color: #1a1b22;
-}
-
-.footer__link:focus,
-.footer__link:hover {
-  opacity: 50%;
 }
 
 .footer__link-img {
