@@ -9,7 +9,7 @@ export default function Nav({ handleSignout }) {
   const { setActiveModal } = useContext(AppContext);
   const location = useLocation();
   const isNavBlack = location.pathname === "/saved-news" ? true : false;
-  const [hamburgerOpen, setHamburgerOpen] = useState(false);
+  const [drawerOpen, setDrawerOpen] = useState(false);
 
   return (
     <nav className={`nav ${isNavBlack ? "nav_black" : ""}`}>
@@ -62,16 +62,16 @@ export default function Nav({ handleSignout }) {
           </div>
         </button>
       </div>
-      <button className="nav__hamburger" type="button">
+      <button className="nav__drawer" type="button">
         <img
           src={
-            hamburgerOpen
-              ? "../src/assets/close-hamburger.svg"
-              : "../src/assets/hamburger.svg"
+            drawerOpen
+              ? "../src/assets/close-drawer.svg"
+              : "../src/assets/drawer.svg"
           }
-          alt="hamburger menu open/close button"
-          className="nav__hamburger-img"
-          onClick={() => setHamburgerOpen(!hamburgerOpen)}
+          alt="drawer menu open/close button"
+          className="nav__drawer-img"
+          onClick={() => setDrawerOpen(!drawerOpen)}
         />
       </button>
     </nav>

@@ -123,7 +123,7 @@
     brightness(83%) contrast(111%);
 }
 
-.nav__hamburger {
+.nav__drawer {
   margin: 0 16px 0 auto;
   background-color: transparent;
   color: inherit;
