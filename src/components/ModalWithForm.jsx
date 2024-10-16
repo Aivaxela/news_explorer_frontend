@@ -16,7 +16,7 @@ export default function ModalWithForm({
         <h3 className="modal__title">{formTitle}</h3>
         <button className="modal__close" type="button" onClick={() => {}}>
           <img
-            src={"../src/assets/modal-close.svg"}
+            src={"../src/assets/close.svg"}
             alt="popup close button"
             className="modal__close-icon"
             onClick={() => setActiveModal("")}

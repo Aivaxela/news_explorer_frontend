@@ -1,5 +1,5 @@
 import "../blocks/Nav.css";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
@@ -9,6 +9,7 @@ export default function Nav({ handleSignout }) {
   const { setActiveModal } = useContext(AppContext);
   const location = useLocation();
   const isNavBlack = location.pathname === "/saved-news" ? true : false;
+  const [hamburgerOpen, setHamburgerOpen] = useState(false);
 
   return (
     <nav className={`nav ${isNavBlack ? "nav_black" : ""}`}>
@@ -61,6 +62,18 @@ export default function Nav({ handleSignout }) {
           </div>
         </button>
       </div>
+      <button className="nav__hamburger" type="button">
+        <img
+          src={
+            hamburgerOpen
+              ? "../src/assets/close-hamburger.svg"
+              : "../src/assets/hamburger.svg"
+          }
+          alt="hamburger menu open/close button"
+          className="nav__hamburger-img"
+          onClick={() => setHamburgerOpen(!hamburgerOpen)}
+        />
+      </button>
     </nav>
   );
 }

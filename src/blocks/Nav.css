@@ -123,6 +123,15 @@
     brightness(83%) contrast(111%);
 }
 
+.nav__hamburger {
+  margin: 0 16px 0 auto;
+  background-color: transparent;
+  color: inherit;
+  border: none;
+  font-size: 36px;
+  cursor: pointer;
+}
+
 @media screen and (max-width: 950px) {
   .nav {
     height: 66px;
