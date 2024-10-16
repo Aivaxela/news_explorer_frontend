@@ -137,3 +137,13 @@
     gap: 19px;
   }
 }
+
+@media screen and (max-width: 950px) {
+  .nav__title {
+    margin: 0 auto 0 16px;
+  }
+
+  .nav__group {
+    display: none;
+  }
+}

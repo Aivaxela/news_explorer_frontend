@@ -11,7 +11,7 @@ export default function SearchForm({ handleSearchSubmit }) {
 
   return (
     <form className="search" onSubmit={handleSubmit}>
-      <label htmlFor="search">
+      <label htmlFor="search" className="search__label">
         <input
           id="search"
           type="text"

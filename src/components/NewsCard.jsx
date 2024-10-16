@@ -76,7 +76,7 @@ export default function NewsCard({
 
   return (
     <div className="card">
-      <div className="card__bookmark">
+      <div className="card__bookmark" tabIndex={0}>
         <button
           className={`card__bookmark-signin ${
             userState.loggedIn ? "card__bookmark-signin_inactive" : ""

@@ -6,7 +6,7 @@
 }
 
 .footer__credit {
-  margin: 0;
+  margin: 0 25px 0 0;
   padding-left: 105px;
   color: #b6bcbf;
   font-size: 16px;
@@ -42,4 +42,27 @@
   margin: 0;
   width: 24px;
   height: 24px;
+}
+
+@media screen and (max-width: 655px) {
+  .footer {
+    margin-top: 64px;
+    padding: 16px;
+    height: 176px;
+    max-width: calc(100vw - 32px);
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .footer__credit {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+  }
+
+  .footer__links-group {
+    padding: 0;
+    flex-direction: column;
+    gap: 16px;
+  }
 }
