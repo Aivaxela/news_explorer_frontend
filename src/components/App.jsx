@@ -1,5 +1,5 @@
 import "../blocks/App.css";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
@@ -10,7 +10,6 @@ import Footer from "../components/Footer";
 import SavedNews from "../components/SavedNews";
 import SigninModal from "../components/SigninModal";
 import Api from "../utils/newsApi";
-import { TEST_DATA } from "../utils/testData"; //TODO: TEST DATA - remove before deployment
 import SignupModal from "./SignupModal";
 
 export default function App() {
@@ -106,7 +105,7 @@ export default function App() {
       password: "",
       username: "",
       savedNews: [],
-      // savedKeywords: [],
+      savedKeywords: [],
     });
   };
 
@@ -120,16 +119,6 @@ export default function App() {
     });
   }
   listenForEsc();
-
-  // useEffect(() => {
-  //   //TODO: TEST DATA - remove before deployment
-  //   setSearchState((currState) => ({
-  //     ...currState,
-  //     results: Array.from(TEST_DATA.articles),
-  //     articlesAvail: TEST_DATA.totalResults,
-  //     loading: false,
-  //   }));
-  // }, []);
 
   return (
     <div className="page">
