@@ -71,30 +71,28 @@ export default function NewsCard({
     }
   };
 
-  const handleSignin = () => {
+  const handleBookmarkClick = () => {
+    if (userState.loggedIn) {
+      updateSavedNews();
+      return;
+    }
     setActiveModal("signin");
   };
 
   return (
     <div className="card">
       <div className="card__bookmark" tabIndex={0}>
+        <div className="card__bookmark-tooltip">
+          {userState.loggedIn && bookmarked
+            ? "Remove from saved"
+            : userState.loggedIn
+            ? "Save article"
+            : "Sign in to save article"}
+        </div>
         <button
-          className={`card__bookmark-signin ${
-            userState.loggedIn ? "card__bookmark-signin_inactive" : ""
-          }`}
+          className="card__bookmark-button"
           type="button"
-          onClick={() => handleSignin()}
-        >
-          Sign in to save articles
-        </button>
-        <button
-          className={`card__bookmark-button ${
-            userState.loggedIn ? "card__bookmark-button_allowed" : ""
-          }`}
-          type="button"
-          onClick={() => {
-            if (userState.loggedIn) updateSavedNews();
-          }}
+          onClick={() => handleBookmarkClick()}
         >
           <img
             src={
