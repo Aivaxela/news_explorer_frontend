@@ -94,6 +94,7 @@ export default function Nav({ handleSignout }) {
         drawerOpen={drawerOpen}
         setDrawerOpen={setDrawerOpen}
         handleDrawerSignin={handleDrawerSignin}
+        handleSignout={handleSignout}
       />
     </nav>
   );

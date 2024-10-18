@@ -7,6 +7,7 @@ export default function NavDrawer({
   drawerOpen,
   setDrawerOpen,
   handleDrawerSignin,
+  handleSignout,
 }) {
   const { userState } = useContext(UserContext);
 
@@ -50,6 +51,22 @@ export default function NavDrawer({
           onClick={handleDrawerSignin}
         >
           Sign in
+        </button>
+        <button
+          className={`nav__drawer-logout ${
+            userState.loggedIn ? "nav__drawer-logout_visible" : ""
+          }`}
+          onClick={handleSignout}
+          type="button"
+        >
+          <div className="nav__logout-contents">
+            <p className="nav__logout-username">{userState.username}</p>
+            <img
+              src="../src/assets/logout.svg"
+              alt="logout icon"
+              className="nav__icon"
+            />
+          </div>
         </button>
       </div>
     </nav>

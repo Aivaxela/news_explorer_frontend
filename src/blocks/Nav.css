@@ -216,6 +216,28 @@
   opacity: 50%;
 }
 
+.nav__drawer-logout {
+  margin: 16px 0;
+  width: calc(100vw - 32px);
+  height: 56px;
+  display: none;
+  border-radius: 100px;
+  border: solid 2px;
+  background-color: transparent;
+  color: #fff;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.nav__drawer-logout_visible {
+  display: flex;
+}
+
+.nav__drawer-logout:hover {
+  opacity: 50%;
+}
+
 @media screen and (max-width: 950px) {
   .nav {
     height: 66px;
