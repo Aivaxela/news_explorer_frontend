@@ -8,7 +8,7 @@ export default function ModalWithForm({
   isVisible,
   formTitle,
 }) {
-  const { setActiveModal } = useContext(AppContext);
+  const { closeActiveModal } = useContext(AppContext);
 
   return (
     <div className={`modal ${isVisible ? "" : "modal_hidden"}`}>
@@ -19,7 +19,7 @@ export default function ModalWithForm({
             src={"../src/assets/close.svg"}
             alt="popup close button"
             className="modal__close-icon"
-            onClick={() => setActiveModal("")}
+            onClick={closeActiveModal}
           />
         </button>
         <form className="modal__form" onSubmit={handleSubmit}>

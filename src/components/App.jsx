@@ -4,12 +4,13 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
-import Nav from "./Nav";
-import Main from "../components/Main";
-import Footer from "../components/Footer";
-import SavedNews from "../components/SavedNews";
-import SigninModal from "../components/SigninModal";
 import Api from "../utils/newsApi";
+import Nav from "./Nav";
+import Main from "./Main";
+import Footer from "./Footer";
+import ProtectedRoute from "./ProtectedRoute";
+import SavedNews from "./SavedNews";
+import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
 export default function App() {
@@ -36,19 +37,8 @@ export default function App() {
     apiKey: "a16de474931b4e5a83f83ad53ba3df69",
   });
 
-  const searchContext = {
-    searchState,
-    setSearchState,
-  };
-
-  const userContext = {
-    userState,
-    setUserState,
-  };
-
-  const appContext = {
-    activeModal,
-    setActiveModal,
+  const closeActiveModal = () => {
+    setActiveModal("");
   };
 
   const handleSearchSubmit = (query) => {
@@ -109,16 +99,28 @@ export default function App() {
     });
   };
 
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
-
   function listenForEsc() {
     document.addEventListener("keydown", (e) => {
       if (e.key === "Escape") closeActiveModal();
     });
   }
   listenForEsc();
+
+  const searchContext = {
+    searchState,
+    setSearchState,
+  };
+
+  const userContext = {
+    userState,
+    setUserState,
+  };
+
+  const appContext = {
+    activeModal,
+    setActiveModal,
+    closeActiveModal,
+  };
 
   return (
     <div className="page">
