@@ -70,6 +70,7 @@ export default function NewsCardList() {
                     source={result.source.name}
                     publishedAt={result.publishedAt}
                     url={result.url}
+                    page={""}
                     key={i}
                   />
                 );
@@ -124,6 +125,7 @@ export default function NewsCardList() {
                     source={article.source.name}
                     publishedAt={article.publishedAt}
                     url={article.url}
+                    page={"saved"}
                     key={article.id}
                   />
                 );

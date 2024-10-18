@@ -3,8 +3,16 @@ import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
 
-export default function NavDrawer({ drawerOpen, handleDrawerSignin }) {
+export default function NavDrawer({
+  drawerOpen,
+  setDrawerOpen,
+  handleDrawerSignin,
+}) {
   const { userState } = useContext(UserContext);
+
+  const handleCloseDrawer = () => {
+    setDrawerOpen(false);
+  };
 
   return (
     <nav
@@ -19,11 +27,16 @@ export default function NavDrawer({ drawerOpen, handleDrawerSignin }) {
         NewsExplorer
       </Link>
       <div className="nav__drawer-box">
-        <Link to="/" className={`nav__drawer-item nav__drawer-item_visible`}>
+        <Link
+          to="/"
+          onClick={() => handleCloseDrawer()}
+          className={`nav__drawer-item nav__drawer-item_visible`}
+        >
           Home
         </Link>
         <Link
           to="/saved-news"
+          onClick={() => handleCloseDrawer()}
           className={`nav__drawer-item nav__drawer-item_visible ${
             userState.loggedIn ? "nav__drawer-item_visible " : ""
           }`}

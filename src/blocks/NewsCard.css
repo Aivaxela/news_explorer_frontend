@@ -134,6 +134,14 @@
   opacity: 100%;
 }
 
+.card__bookmark-button-delete {
+  opacity: 40%;
+}
+
+.card__bookmark-button-delete:hover {
+  opacity: 100%;
+}
+
 @media screen and (max-width: 950px) {
   .card__image {
     height: 150px;

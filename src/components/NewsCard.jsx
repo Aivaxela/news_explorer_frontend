@@ -12,6 +12,7 @@ export default function NewsCard({
   source,
   publishedAt,
   url,
+  page,
 }) {
   const { userState, setUserState } = useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
@@ -97,13 +98,17 @@ export default function NewsCard({
         >
           <img
             src={
-              bookmarked
+              bookmarked && page === "saved"
+                ? "../src/assets/bookmark-delete.svg"
+                : bookmarked
                 ? "../src/assets/bookmark-filled.svg"
                 : "../src/assets/bookmark.svg"
             }
             alt="boomark button on news article card"
             className={
-              bookmarked
+              bookmarked && page === "saved"
+                ? "card__bookmark-button-delete"
+                : bookmarked
                 ? "card__bookmark-button-img_filled"
                 : "card__bookmark-button-img"
             }
