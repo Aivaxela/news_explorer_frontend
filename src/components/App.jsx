@@ -1,6 +1,6 @@
 import "../blocks/App.css";
-import { useState } from "react";
-import { Route, Routes, Navigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
@@ -31,15 +31,17 @@ export default function App() {
     savedKeywords: [],
   });
   const [activeModal, setActiveModal] = useState("");
+  const [protectedDestination, setProtectedDestination] = useState("");
+  const navigate = useNavigate();
 
   const api = new Api({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
     apiKey: "a16de474931b4e5a83f83ad53ba3df69",
   });
 
-  const closeActiveModal = () => {
-    setActiveModal("");
-  };
+  useEffect(() => {
+    if (protectedDestination !== "") setActiveModal("signin");
+  }, [protectedDestination]);
 
   const handleSearchSubmit = (query) => {
     setSearchState((currState) => ({
@@ -67,22 +69,23 @@ export default function App() {
       );
   };
 
-  const handleSignup = (values) => {
-    setUserState({
-      loggedIn: true,
-      username: values.username,
-      email: values.email.split("@")[0], //TODO: replace w username retrieved from DB
-      password: values.password,
-    });
-    closeActiveModal();
-  };
-
   const handleSignin = (values) => {
     setUserState({
       ...userState,
       loggedIn: true,
       username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
       email: values.email,
+      password: values.password,
+    });
+    navigate(protectedDestination || "/");
+    closeActiveModal();
+  };
+
+  const handleSignup = (values) => {
+    setUserState({
+      loggedIn: true,
+      username: values.username,
+      email: values.email.split("@")[0], //TODO: replace w username retrieved from DB
       password: values.password,
     });
     closeActiveModal();
@@ -97,6 +100,10 @@ export default function App() {
       savedNews: [],
       savedKeywords: [],
     });
+  };
+
+  const closeActiveModal = () => {
+    setActiveModal("");
   };
 
   function listenForEsc() {
@@ -136,7 +143,16 @@ export default function App() {
                     <Main handleSearchSubmit={handleSearchSubmit}></Main>
                   }
                 />
-                <Route path="/saved-news" element={<SavedNews />} />
+                <Route
+                  path="/saved-news"
+                  element={
+                    <ProtectedRoute
+                      setProtectedDestination={setProtectedDestination}
+                    >
+                      <SavedNews />
+                    </ProtectedRoute>
+                  }
+                />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
               <Footer />
