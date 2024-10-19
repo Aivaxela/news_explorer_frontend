@@ -124,7 +124,7 @@
 }
 
 .card__bookmark:hover + .card__keyword {
-  opacity: 0.5;
+  opacity: 0;
 }
 
 .card__bookmark-button {

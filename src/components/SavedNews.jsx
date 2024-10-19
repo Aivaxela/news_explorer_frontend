@@ -6,6 +6,16 @@ import NewsCardList from "./NewsCardList";
 export default function SavedNews() {
   const { userState } = useContext(UserContext);
 
+  const keywords = userState.savedNews
+    .map((article) => article.keyword)
+    .reduce(
+      (uniques, current) =>
+        uniques.includes(current) ? uniques : uniques.push(current) && uniques,
+      []
+    );
+  const { length: keywordsLength } = keywords;
+  const [firstKeyword, secondKeyword] = keywords;
+
   return (
     <>
       <section className="saved">
@@ -18,7 +28,15 @@ export default function SavedNews() {
         <p className="saved__keywords">
           By keywords:{" "}
           <span className="saved__keywords-bold">
-            Nature, Yellowstone, and 2 others
+            {keywordsLength > 2
+              ? `${firstKeyword}, ${secondKeyword}, and ${
+                  keywordsLength - 2
+                } other${keywordsLength > 3 ? "s" : ""}`
+              : keywordsLength === 2
+              ? `${firstKeyword} and ${secondKeyword}`
+              : keywordsLength === 1
+              ? firstKeyword
+              : "No keywords yet"}
           </span>
         </p>
       </section>
