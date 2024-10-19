@@ -11,12 +11,26 @@ export default function About() {
       <div className="about__text-content">
         <h2 className="about__text-title">About the author</h2>
         <p className="about__text">
-          This block describes the project author. Here you should indicate your
-          name, what you do, and which development technologies you know.
+          Hello! Thank you for taking a moment to read my About section.
           <br />
           <br />
-          You can also talk about your experience with TripleTen, what you
-          learned there, and how you can help potential customers.
+          My name is Riley Marcum. At the time of writing this, I have work
+          experience in various areas of IT support, including desktop and
+          mobile office technologies, security equipment, and industrial
+          automation.
+          <br />
+          <br />
+          I also have software development experience in a few different areas.
+          I am trained in the MERN stack for web development and have completed
+          multiple full-stack web applications. I've used C# and Visual Studio
+          for small Windows Forms Application projects. As a hobby, I've used C#
+          and the Godot engine for video game development.
+          <br />
+          <br />
+          "NewsExplorer" was created by me to showcase my web development skills
+          learned from attending the TripleTen Software Engineering program. It
+          features a full-stack infrastructure, utilizing the technologies in
+          the MERN stack.
         </p>
       </div>
     </section>
