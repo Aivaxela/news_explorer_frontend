@@ -38,6 +38,10 @@
   color: #1a1b22;
 }
 
+.footer__link:hover {
+  opacity: 0.5;
+}
+
 .footer__link-img {
   margin: 0;
   width: 24px;

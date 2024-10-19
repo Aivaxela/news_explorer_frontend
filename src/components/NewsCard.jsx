@@ -12,6 +12,7 @@ export default function NewsCard({
   source,
   publishedAt,
   url,
+  keyword,
   page,
 }) {
   const { userState, setUserState } = useContext(UserContext);
@@ -44,6 +45,7 @@ export default function NewsCard({
           source: source,
           publishedAt: publishedAt,
           url: url,
+          keyword: searchState.keyword,
           id: uuidv4(),
         },
       ];
@@ -112,6 +114,13 @@ export default function NewsCard({
             }
           />
         </button>
+      </div>
+      <div
+        className={`card__keyword ${
+          page === "saved" ? "card__keyword_visible" : ""
+        }`}
+      >
+        {keyword}
       </div>
       <a
         href={`${url}`}

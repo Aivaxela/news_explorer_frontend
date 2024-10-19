@@ -125,6 +125,7 @@ export default function NewsCardList() {
                     source={article.source.name}
                     publishedAt={article.publishedAt}
                     url={article.url}
+                    keyword={article.keyword}
                     page={"saved"}
                     key={article.id}
                   />

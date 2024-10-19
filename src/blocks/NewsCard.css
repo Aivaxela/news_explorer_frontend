@@ -65,6 +65,29 @@
   white-space: nowrap;
 }
 
+.card__keyword {
+  position: absolute;
+  display: flex;
+  opacity: 0;
+  top: 24px;
+  left: 24px;
+  height: 40px;
+  padding: 0 10px;
+  pointer-events: none;
+  background-color: #fff;
+  font-size: 14px;
+  font-family: "Roboto-500", "Arial", sans-serif;
+  font-weight: 500;
+  border-radius: 10px;
+  align-items: center;
+  text-align: center;
+  box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+}
+
+.card__keyword_visible {
+  opacity: 1;
+}
+
 .card__bookmark {
   position: absolute;
   display: flex;
@@ -76,7 +99,7 @@
 .card__bookmark-tooltip {
   height: 40px;
   padding: 0 10px;
-  opacity: 0%;
+  opacity: 0;
   pointer-events: none;
   background-color: #fff;
   font-size: 12px;
@@ -94,7 +117,7 @@
 }
 
 .card__bookmark:hover .card__bookmark-tooltip {
-  opacity: 100%;
+  opacity: 1;
   transform: translateX(0);
 }
 
@@ -114,20 +137,20 @@
 }
 
 .card__bookmark-button-img {
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .card__bookmark-button-img_filled {
-  opacity: 100%;
+  opacity: 1;
 }
 
 .card__bookmark-button-delete {
-  opacity: 40%;
+  opacity: 0.4;
 }
 
 .card__bookmark-button:hover .card__bookmark-button-img,
 .card__bookmark-button:hover .card__bookmark-button-delete {
-  opacity: 100%;
+  opacity: 1;
 }
 
 @media screen and (max-width: 950px) {

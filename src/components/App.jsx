@@ -116,6 +116,7 @@ export default function App() {
 
   const closeActiveModal = () => {
     setActiveModal("");
+    setProtectedDestination("");
   };
 
   const searchContext = {
