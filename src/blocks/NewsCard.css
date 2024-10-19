@@ -82,6 +82,7 @@
   align-items: center;
   text-align: center;
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+  transition: opacity 0.35s;
 }
 
 .card__keyword_visible {
@@ -108,17 +109,22 @@
   line-height: 14px;
   border-radius: 10px;
   border: none;
-  transform: translateX(-100px);
+  transform: translateX(-200px);
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275),
     opacity 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   align-content: center;
   text-align: center;
   box-shadow: 2px 2px 5px 0px rgba(0, 0, 0, 0.25);
+  z-index: 1;
 }
 
 .card__bookmark:hover .card__bookmark-tooltip {
   opacity: 1;
   transform: translateX(0);
+}
+
+.card__bookmark:hover + .card__keyword {
+  opacity: 0.5;
 }
 
 .card__bookmark-button {

@@ -17,6 +17,7 @@ export default function SearchForm({ handleSearchSubmit }) {
           type="text"
           className="search__input"
           placeholder="Enter topic"
+          maxLength="20"
           onChange={(e) => setValue(e.target.value)}
           required
         />
