@@ -57,8 +57,6 @@ export default function NewsCardList() {
             }`}
           >
             {searchState.results.map((result, i) => {
-              //TODO: replace key i with unique ID after backend integrated
-
               if (
                 searchState.results.indexOf(result) < searchState.articlesShown
               ) {
@@ -127,6 +125,7 @@ export default function NewsCardList() {
                     url={article.url}
                     keyword={article.keyword}
                     page={"saved"}
+                    id={article.id}
                     key={article.id}
                   />
                 );

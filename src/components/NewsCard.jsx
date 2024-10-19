@@ -13,9 +13,11 @@ export default function NewsCard({
   publishedAt,
   url,
   keyword,
+  id,
   page,
 }) {
-  const { userState, setUserState } = useContext(UserContext);
+  const { userState, addSavedArticle, removeSavedArticle } =
+    useContext(UserContext);
   const { setActiveModal } = useContext(AppContext);
   const { searchState } = useContext(SearchContext);
   const [bookmarked, setBookmarked] = useState(false);
@@ -34,48 +36,26 @@ export default function NewsCard({
     day: "numeric",
   });
 
-  const updateSavedNews = () => {
+  const handleUpdateSavedNews = () => {
     if (!bookmarked) {
-      const updatedSavedNews = [
-        ...userState.savedNews,
-        {
-          urlToImage: urlToImage,
-          title: title,
-          description: description,
-          source: source,
-          publishedAt: publishedAt,
-          url: url,
-          keyword: searchState.keyword,
-          id: uuidv4(),
-        },
-      ];
-      const updatedSavedKeywords = [
-        ...userState.savedKeywords,
-        searchState.keyword,
-      ];
-      setUserState({
-        ...userState,
-        savedNews: updatedSavedNews,
-        savedKeywords: updatedSavedKeywords,
+      addSavedArticle({
+        urlToImage: urlToImage,
+        title: title,
+        description: description,
+        source: source,
+        publishedAt: publishedAt,
+        url: url,
+        keyword: searchState.keyword,
+        id: uuidv4(),
       });
     } else {
-      setUserState({
-        ...userState,
-        savedNews: [
-          ...userState.savedNews.filter(
-            (article) =>
-              article.title != title && article.publishedAt != publishedAt
-          ),
-        ],
-      });
-
-      //TODO: find better way to set saved keywords? populate keywords el from state?
+      removeSavedArticle(id);
     }
   };
 
   const handleBookmarkClick = () => {
     if (userState.loggedIn) {
-      updateSavedNews();
+      handleUpdateSavedNews();
       return;
     }
     setActiveModal("signin");
@@ -83,8 +63,19 @@ export default function NewsCard({
 
   return (
     <div className="card">
-      <div className="card__bookmark" tabIndex={0}>
-        <div className="card__bookmark-tooltip">
+      <div
+        className={`card__bookmark ${
+          bookmarked && page != "saved" ? "card__bookmark_disabled" : ""
+        }`}
+        tabIndex={0}
+      >
+        <div
+          className={`card__bookmark-tooltip ${
+            bookmarked && page != "saved"
+              ? "card__bookmark-tooltip_disabled"
+              : ""
+          }`}
+        >
           {userState.loggedIn && bookmarked
             ? "Remove from saved"
             : userState.loggedIn

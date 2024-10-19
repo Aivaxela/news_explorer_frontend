@@ -4,7 +4,9 @@ import { Route, Routes, Navigate, useNavigate } from "react-router-dom";
 import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
-import Api from "../utils/newsApi";
+import Api from "../utils/api";
+import NewsApi from "../utils/newsApi";
+import { authorize } from "../utils/auth";
 import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -28,13 +30,14 @@ export default function App() {
     password: "",
     username: "",
     savedNews: [],
-    savedKeywords: [],
   });
   const [activeModal, setActiveModal] = useState("");
   const [protectedDestination, setProtectedDestination] = useState("");
   const navigate = useNavigate();
 
-  const api = new Api({
+  const api = new Api();
+
+  const newsApi = new NewsApi({
     baseUrl: "https://nomoreparties.co/news/v2/everything",
     apiKey: "a16de474931b4e5a83f83ad53ba3df69",
   });
@@ -62,7 +65,7 @@ export default function App() {
       nothingFound: false,
       articlesShown: 3,
     }));
-    api
+    newsApi
       .getNewsArticles(query)
       .then((res) => {
         setSearchState((currState) => ({
@@ -79,6 +82,23 @@ export default function App() {
       .finally(() =>
         setSearchState((currState) => ({ ...currState, loading: false }))
       );
+  };
+
+  const addSavedArticle = (newArticle) => {
+    api.addArticle(newArticle).then((res) => {
+      const updatedSavedNews = [...userState.savedNews, res];
+      setUserState({
+        ...userState,
+        savedNews: updatedSavedNews,
+      });
+    });
+  };
+
+  const removeSavedArticle = (id) => {
+    setUserState({
+      ...userState,
+      savedNews: [...userState.savedNews.filter((article) => article.id != id)],
+    });
   };
 
   const handleSignin = (values) => {
@@ -110,7 +130,6 @@ export default function App() {
       password: "",
       username: "",
       savedNews: [],
-      savedKeywords: [],
     });
   };
 
@@ -127,6 +146,8 @@ export default function App() {
   const userContext = {
     userState,
     setUserState,
+    addSavedArticle,
+    removeSavedArticle,
   };
 
   const appContext = {
