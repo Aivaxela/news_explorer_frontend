@@ -22,15 +22,15 @@ export default function About() {
           <br />
           I also have software development experience in a few different areas.
           I am trained in the MERN stack for web development and have completed
-          multiple full-stack web applications. I've used C# and Visual Studio
-          for small Windows Forms Application projects. As a hobby, I've used C#
-          and the Godot engine for video game development.
+          multiple full-stack web applications. I&apos;ve used C# and Visual
+          Studio for small Windows Forms Application projects. As a hobby,
+          I&apos;ve used C# and the Godot engine for video game development.
           <br />
           <br />
-          "NewsExplorer" was created by me to showcase my web development skills
-          learned from attending the TripleTen Software Engineering program. It
-          features a full-stack infrastructure, utilizing the technologies in
-          the MERN stack.
+          &quot;NewsExplorer&quot; was created by me to showcase my web
+          development skills learned from attending the TripleTen Software
+          Engineering program. It features a full-stack infrastructure,
+          utilizing the technologies in the MERN stack.
         </p>
       </div>
     </section>
