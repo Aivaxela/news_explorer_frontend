@@ -43,6 +43,18 @@ export default function App() {
     if (protectedDestination !== "") setActiveModal("signin");
   }, [protectedDestination]);
 
+  useEffect(() => {
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape") closeActiveModal();
+    });
+
+    document.querySelectorAll(".modal").forEach((modal) => {
+      modal.addEventListener("click", (e) => {
+        if (e.target.classList[0] === "modal") closeActiveModal();
+      });
+    });
+  }, []);
+
   const handleSearchSubmit = (query) => {
     setSearchState((currState) => ({
       ...currState,
@@ -105,13 +117,6 @@ export default function App() {
   const closeActiveModal = () => {
     setActiveModal("");
   };
-
-  function listenForEsc() {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeActiveModal();
-    });
-  }
-  listenForEsc();
 
   const searchContext = {
     searchState,

@@ -87,6 +87,14 @@
   cursor: pointer;
 }
 
+.modal__round-button:hover {
+  background-color: #347eff;
+}
+
+.modal__round-button:active {
+  background-color: #2a65cc;
+}
+
 .modal__round-button_error {
   background-color: #e6e8eb;
   color: #b6bcbf;

@@ -119,7 +119,11 @@ export default function NewsCard({
         rel="noopener noreferrer"
         className="card__link"
       >
-        <img src={urlToImage} alt="" className="card__image" />
+        <img
+          src={urlToImage}
+          alt="news article image"
+          className="card__image"
+        />
         <div className="card__text-container">
           <time className="card__date" dateTime="2024-10-04">
             {publishedAtFormatted}
