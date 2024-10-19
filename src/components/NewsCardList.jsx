@@ -34,7 +34,7 @@ export default function NewsCardList() {
           }`}
         >
           <img
-            src="../src/assets/not-found_v1.svg"
+            src="../src/assets/images/not-found_v1.svg"
             alt="nothing found image"
             className="cards__nothing-found-image"
           />
@@ -106,7 +106,7 @@ export default function NewsCardList() {
               }`}
             >
               <img
-                src="../src/assets/not-found_v1.svg"
+                src="../src/assets/images/not-found_v1.svg"
                 alt="nothing found image"
                 className="cards__nothing-found-image"
               />

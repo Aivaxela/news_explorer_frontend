@@ -97,10 +97,10 @@ export default function NewsCard({
           <img
             src={
               bookmarked && page === "saved"
-                ? "../src/assets/bookmark-delete.svg"
+                ? "../src/assets/images/bookmark-delete.svg"
                 : bookmarked
-                ? "../src/assets/bookmark-filled.svg"
-                : "../src/assets/bookmark.svg"
+                ? "../src/assets/images/bookmark-filled.svg"
+                : "../src/assets/images/bookmark.svg"
             }
             alt="boomark button on news article card"
             className={

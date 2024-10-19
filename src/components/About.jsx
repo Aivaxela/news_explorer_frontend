@@ -4,7 +4,7 @@ export default function About() {
   return (
     <section className="about">
       <img
-        src="../src/assets/me.jpg"
+        src="../src/assets/images/me.jpg"
         alt="image of the author"
         className="about__image"
       />

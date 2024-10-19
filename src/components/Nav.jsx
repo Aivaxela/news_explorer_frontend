@@ -67,7 +67,7 @@ export default function Nav({ handleSignout }) {
           <div className="nav__logout-contents">
             <p className="nav__logout-username">{userState.username}</p>
             <img
-              src="../src/assets/logout.svg"
+              src="../src/assets/images/logout.svg"
               alt="logout icon"
               className={`nav__icon ${isNavBlack ? "nav__icon_black" : ""}`}
             />
@@ -82,8 +82,8 @@ export default function Nav({ handleSignout }) {
         <img
           src={
             drawerOpen
-              ? "../src/assets/nav-drawer-close.svg"
-              : "../src/assets/nav-drawer.svg"
+              ? "../src/assets/images/nav-drawer-close.svg"
+              : "../src/assets/images/nav-drawer.svg"
           }
           alt="drawer menu open/close button"
           className={` ${isNavBlack && !drawerOpen ? "nav__icon_black" : ""}`}

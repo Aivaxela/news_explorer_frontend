@@ -33,7 +33,7 @@ export default function Footer() {
           rel="noopener noreferrer"
         >
           <img
-            src="../src/assets/github-icon.svg"
+            src="../src/assets/images/github-icon.svg"
             alt="github link icon"
             className="footer__link footer__link-img"
           />

@@ -62,7 +62,7 @@ export default function NavDrawer({
           <div className="nav__logout-contents">
             <p className="nav__logout-username">{userState.username}</p>
             <img
-              src="../src/assets/logout.svg"
+              src="../src/assets/images/logout.svg"
               alt="logout icon"
               className="nav__icon"
             />
