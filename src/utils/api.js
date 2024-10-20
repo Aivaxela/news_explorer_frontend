@@ -1,6 +1,6 @@
 export default class Api {
   addArticle = (article) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve({
         urlToImage: article.urlToImage,
         title: article.title,
@@ -15,7 +15,7 @@ export default class Api {
   };
 
   removeArticle = (id) => {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       resolve({
         id: id,
       });

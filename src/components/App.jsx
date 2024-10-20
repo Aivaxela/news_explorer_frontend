@@ -77,7 +77,7 @@ export default function App() {
           nothingFound: res.totalResults <= 0 ? true : false,
         }));
       })
-      .catch((err) => console.log(err)) //TODO: handle this error properly
+      .catch((err) => console.error(err))
       .finally(() =>
         setSearchState((currState) => ({ ...currState, loading: false }))
       );
