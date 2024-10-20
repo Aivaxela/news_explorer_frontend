@@ -1,4 +1,5 @@
 import "../blocks/Nav.css";
+import logoutIcon from "../assets/images/logout.svg";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -61,11 +62,7 @@ export default function NavDrawer({
         >
           <div className="nav__logout-contents">
             <p className="nav__logout-username">{userState.username}</p>
-            <img
-              src="../src/assets/images/logout.svg"
-              alt="logout icon"
-              className="nav__icon"
-            />
+            <img src={logoutIcon} alt="logout icon" className="nav__icon" />
           </div>
         </button>
       </div>

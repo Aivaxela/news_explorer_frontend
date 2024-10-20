@@ -1,4 +1,5 @@
 import "../blocks/Modal.css";
+import closeIcon from "../assets/images/close.svg";
 import { useContext } from "react";
 import { AppContext } from "../contexts/AppContext";
 
@@ -16,7 +17,7 @@ export default function ModalWithForm({
         <h3 className="modal__title">{formTitle}</h3>
         <button className="modal__close" type="button" onClick={() => {}}>
           <img
-            src={"../src/assets/images/close.svg"}
+            src={closeIcon}
             alt="popup close button"
             className="modal__close-icon"
             onClick={closeActiveModal}

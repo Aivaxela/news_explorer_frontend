@@ -1,4 +1,5 @@
 import "../blocks/Footer.css";
+import githubIcon from "../assets/images/github-icon.svg";
 import { Link } from "react-router-dom";
 
 export default function Footer() {
@@ -33,7 +34,7 @@ export default function Footer() {
           rel="noopener noreferrer"
         >
           <img
-            src="../src/assets/images/github-icon.svg"
+            src={githubIcon}
             alt="github link icon"
             className="footer__link footer__link-img"
           />

@@ -1,4 +1,7 @@
 import "../blocks/NewsCard.css";
+import bookmarkIcon from "../assets/images/bookmark.svg";
+import bookmarkDeleteIcon from "../assets/images/bookmark-delete.svg";
+import bookmarkFilledIcon from "../assets/images/bookmark-filled.svg";
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
@@ -90,10 +93,10 @@ export default function NewsCard({
           <img
             src={
               bookmarked && page === "saved"
-                ? "../src/assets/images/bookmark-delete.svg"
+                ? bookmarkDeleteIcon
                 : bookmarked
-                ? "../src/assets/images/bookmark-filled.svg"
-                : "../src/assets/images/bookmark.svg"
+                ? bookmarkFilledIcon
+                : bookmarkIcon
             }
             alt="boomark button on news article card"
             className={

@@ -1,4 +1,7 @@
 import "../blocks/Nav.css";
+import navDrawerIcon from "../assets/images/nav-drawer.svg";
+import navDrawerIconClose from "../assets/images/nav-drawer-close.svg";
+import logoutIcon from "../assets/images/logout.svg";
 import { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { UserContext } from "../contexts/UserContext";
@@ -67,7 +70,7 @@ export default function Nav({ handleSignout }) {
           <div className="nav__logout-contents">
             <p className="nav__logout-username">{userState.username}</p>
             <img
-              src="../src/assets/images/logout.svg"
+              src={logoutIcon}
               alt="logout icon"
               className={`nav__icon ${isNavBlack ? "nav__icon_black" : ""}`}
             />
@@ -80,11 +83,7 @@ export default function Nav({ handleSignout }) {
         onClick={handleDrawerToggle}
       >
         <img
-          src={
-            drawerOpen
-              ? "../src/assets/images/nav-drawer-close.svg"
-              : "../src/assets/images/nav-drawer.svg"
-          }
+          src={drawerOpen ? navDrawerIconClose : navDrawerIcon}
           alt="drawer menu open/close button"
           className={` ${isNavBlack && !drawerOpen ? "nav__icon_black" : ""}`}
         />

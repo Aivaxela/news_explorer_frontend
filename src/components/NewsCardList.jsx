@@ -1,4 +1,5 @@
 import "../blocks/NewsCardList.css";
+import nothingFoundImg from "../assets/images/not-found_v1.svg";
 import { useContext } from "react";
 import { SearchContext } from "../contexts/SearchContext";
 import NewsCard from "./NewsCard";
@@ -34,7 +35,7 @@ export default function NewsCardList() {
           }`}
         >
           <img
-            src="../src/assets/images/not-found_v1.svg"
+            src={nothingFoundImg}
             alt="nothing found image"
             className="cards__nothing-found-image"
           />
@@ -104,7 +105,7 @@ export default function NewsCardList() {
               }`}
             >
               <img
-                src="../src/assets/images/not-found_v1.svg"
+                src={nothingFoundImg}
                 alt="nothing found image"
                 className="cards__nothing-found-image"
               />

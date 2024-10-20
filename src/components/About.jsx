@@ -1,13 +1,10 @@
 import "../blocks/About.css";
+import authorImg from "../assets/images/me.jpg";
 
 export default function About() {
   return (
     <section className="about">
-      <img
-        src="../src/assets/images/me.jpg"
-        alt="image of the author"
-        className="about__image"
-      />
+      <img src={authorImg} alt="image of the author" className="about__image" />
       <div className="about__text-content">
         <h2 className="about__text-title">About the author</h2>
         <p className="about__text">
