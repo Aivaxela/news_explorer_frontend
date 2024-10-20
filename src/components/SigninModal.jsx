@@ -12,8 +12,7 @@ export default function SigninModal({ handleSignin, isVisible }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!isValid) return;
-    handleSignin(values);
-    resetForm();
+    handleSignin(values, resetForm);
   };
 
   return (

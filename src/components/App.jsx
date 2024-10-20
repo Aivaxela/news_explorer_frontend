@@ -15,6 +15,12 @@ import SavedNews from "./SavedNews";
 import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
+const api = new Api();
+const newsApi = new NewsApi({
+  baseUrl: "https://nomoreparties.co/news/v2/everything",
+  apiKey: "a16de474931b4e5a83f83ad53ba3df69",
+});
+
 export default function App() {
   const [searchState, setSearchState] = useState({
     results: [],
@@ -34,28 +40,22 @@ export default function App() {
   const [protectedDestination, setProtectedDestination] = useState("");
   const navigate = useNavigate();
 
-  const api = new Api();
-
-  const newsApi = new NewsApi({
-    baseUrl: "https://nomoreparties.co/news/v2/everything",
-    apiKey: "a16de474931b4e5a83f83ad53ba3df69",
-  });
-
   useEffect(() => {
     if (protectedDestination !== "") setActiveModal("signin");
   }, [protectedDestination]);
 
   useEffect(() => {
-    document.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") closeActiveModal();
-    });
+    if (!activeModal) return;
 
-    document.querySelectorAll(".modal").forEach((modal) => {
-      modal.addEventListener("click", (e) => {
-        if (e.target.classList[0] === "modal") closeActiveModal();
-      });
-    });
-  }, []);
+    const handleCloseOnEsc = (e) => {
+      if (e.key === "Escape") closeActiveModal();
+    };
+
+    document.addEventListener("keydown", handleCloseOnEsc);
+    return () => {
+      document.removeEventListener("keydown", handleCloseOnEsc);
+    };
+  }, [activeModal]);
 
   const handleSearchSubmit = (query) => {
     setSearchState((currState) => ({
@@ -84,27 +84,33 @@ export default function App() {
   };
 
   const addSavedArticle = (newArticle) => {
-    api.addArticle(newArticle).then((res) => {
-      const updatedSavedNews = [...userState.savedNews, res];
-      setUserState({
-        ...userState,
-        savedNews: updatedSavedNews,
-      });
-    });
+    api
+      .addArticle(newArticle)
+      .then((res) => {
+        const updatedSavedNews = [...userState.savedNews, res];
+        setUserState({
+          ...userState,
+          savedNews: updatedSavedNews,
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
   const removeSavedArticle = (id) => {
-    api.removeArticle(id).then((res) => {
-      setUserState({
-        ...userState,
-        savedNews: [
-          ...userState.savedNews.filter((article) => article.id != res.id),
-        ],
-      });
-    });
+    api
+      .removeArticle(id)
+      .then((res) => {
+        setUserState({
+          ...userState,
+          savedNews: [
+            ...userState.savedNews.filter((article) => article.id != res.id),
+          ],
+        });
+      })
+      .catch((err) => console.error(err));
   };
 
-  const handleSignin = (values) => {
+  const handleSignin = (values, resetForm) => {
     authorize(values)
       .then((res) => {
         setUserState({
@@ -113,10 +119,11 @@ export default function App() {
           username: res.username,
           email: res.email,
         });
+        closeActiveModal();
+        resetForm();
+        navigate(protectedDestination || "/");
       })
       .catch((err) => console.error(err));
-    navigate(protectedDestination || "/");
-    closeActiveModal();
   };
 
   const handleSignup = (values) => {
@@ -128,9 +135,9 @@ export default function App() {
           username: res.username,
           email: res.email,
         });
+        closeActiveModal();
       })
       .catch((err) => console.error(err));
-    closeActiveModal();
   };
 
   const handleSignout = () => {

@@ -33,8 +33,11 @@ export default class Api {
       return res.json();
     }
 
-    return res.json().then((err) => {
-      return Promise.reject(`Error: ${res.status} - ${err.message}`);
-    });
+    return res
+      .json()
+      .then((err) => {
+        return Promise.reject(`Error: ${res.status} - ${err.message}`);
+      })
+      .catch((err) => console.error(err));
   }
 }
