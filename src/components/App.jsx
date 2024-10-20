@@ -27,7 +27,6 @@ export default function App() {
   const [userState, setUserState] = useState({
     loggedIn: false,
     email: "",
-    password: "",
     username: "",
     savedNews: [],
   });
@@ -95,31 +94,42 @@ export default function App() {
   };
 
   const removeSavedArticle = (id) => {
-    setUserState({
-      ...userState,
-      savedNews: [...userState.savedNews.filter((article) => article.id != id)],
+    api.removeArticle(id).then((res) => {
+      setUserState({
+        ...userState,
+        savedNews: [
+          ...userState.savedNews.filter((article) => article.id != res.id),
+        ],
+      });
     });
   };
 
   const handleSignin = (values) => {
-    setUserState({
-      ...userState,
-      loggedIn: true,
-      username: values.email.split("@")[0], //TODO: replace w username retrieved from DB
-      email: values.email,
-      password: values.password,
-    });
+    authorize(values)
+      .then((res) => {
+        setUserState({
+          ...userState,
+          loggedIn: true,
+          username: res.username,
+          email: res.email,
+        });
+      })
+      .catch((err) => console.error(err));
     navigate(protectedDestination || "/");
     closeActiveModal();
   };
 
   const handleSignup = (values) => {
-    setUserState({
-      loggedIn: true,
-      username: values.username,
-      email: values.email.split("@")[0], //TODO: replace w username retrieved from DB
-      password: values.password,
-    });
+    authorize(values)
+      .then((res) => {
+        setUserState({
+          ...userState,
+          loggedIn: true,
+          username: res.username,
+          email: res.email,
+        });
+      })
+      .catch((err) => console.error(err));
     closeActiveModal();
   };
 
@@ -127,7 +137,6 @@ export default function App() {
     setUserState({
       loggedIn: false,
       email: "",
-      password: "",
       username: "",
       savedNews: [],
     });

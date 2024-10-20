@@ -14,11 +14,10 @@ export default class Api {
     });
   };
 
-  removeArticle = (toBeRemoved) => {
+  removeArticle = (id) => {
     return new Promise((resolve, reject) => {
       resolve({
-        title: article.title,
-        publishedAt: article.publishedAt,
+        id: id,
       });
     });
   };
