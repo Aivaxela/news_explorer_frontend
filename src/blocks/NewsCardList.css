@@ -1,0 +1,144 @@
+.cards {
+  background: #f5f6f7;
+}
+
+.cards_hidden {
+  display: none;
+}
+
+.cards__loading {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 282px;
+  gap: 24px;
+  background-color: #f5f6f7;
+}
+
+.cards__loading_visible {
+  display: flex;
+}
+
+.cards__loading-title {
+  margin: 0;
+  color: #b6bcbf;
+}
+
+.cards__nothing-found {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 374px;
+  gap: 16px;
+  background-color: #f5f6f7;
+}
+
+.cards__nothing-found_visible {
+  display: flex;
+}
+
+.cards__nothing-found-image {
+  height: 82.5px;
+  width: 82.5px;
+}
+
+.cards__nothing-found-title {
+  margin: 0;
+  font-size: 26px;
+  line-height: 30px;
+}
+
+.cards__nothing-found-description {
+  margin: 0;
+  max-width: 250px;
+  text-align: center;
+  color: #b6bcbf;
+}
+
+.cards__title {
+  margin: 0 0 64px 0;
+  font-size: 40px;
+  line-height: 46px;
+  font-weight: 400;
+  font-family: "Roboto-Slab-reg", "Arial", sans-serif;
+}
+
+.cards__elements {
+  padding: 80px 95px;
+  display: none;
+  flex-direction: column;
+}
+
+.cards__elements_visible {
+  display: flex;
+}
+
+.cards__list {
+  display: none;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  grid-gap: 16px 16px;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.cards__list_visible {
+  display: grid;
+}
+
+.cards__show-more {
+  margin-top: 64px;
+  padding: 0;
+  display: none;
+  width: 288px;
+  height: 64px;
+  cursor: pointer;
+  align-self: center;
+  border-radius: 80px;
+  border-style: none;
+  background-color: #fff;
+  font-weight: 500;
+}
+
+.cards__show-more:hover {
+  background-color: #e8e8e8;
+}
+
+.cards__show-more_visible {
+  display: block;
+}
+
+@media screen and (max-width: 950px) {
+  .cards__list {
+    grid-template-columns: repeat(auto-fit, minmax(224px, 1fr));
+    grid-gap: 8px 8px;
+    width: 100%;
+  }
+
+  .cards__title {
+    margin: 0 0 32px 0;
+    font-size: 30px;
+    line-height: 34px;
+  }
+
+  .cards__elements {
+    padding: 32px 40px;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .cards__list {
+    grid-gap: 10px 10px;
+    width: 100%;
+  }
+
+  .cards__title {
+    margin: 0 0 58px 0;
+  }
+
+  .cards__elements {
+    padding: 32px 16px;
+  }
+}
