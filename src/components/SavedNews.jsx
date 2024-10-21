@@ -8,13 +8,14 @@ export default function SavedNews() {
 
   const keywords = userState.savedNews
     .map((article) => article.keyword)
-    .reduce(
-      (uniques, current) =>
-        uniques.includes(current) ? uniques : uniques.push(current) && uniques,
-      []
-    );
-  const { length: keywordsLength } = keywords;
-  const [firstKeyword, secondKeyword] = keywords;
+    .reduce((uniques, current) => {
+      return { ...uniques, [current]: true };
+    }, {});
+  const {
+    length: keywordsLength,
+    0: firstKeyword,
+    1: secondKeyword,
+  } = Object.keys(keywords);
 
   return (
     <>
