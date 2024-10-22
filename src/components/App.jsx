@@ -21,6 +21,8 @@ const newsApi = new NewsApi({
   apiKey: "a16de474931b4e5a83f83ad53ba3df69",
 });
 
+api.getUser().then((res) => console.log(res));
+
 export default function App() {
   const [searchState, setSearchState] = useState({
     results: [],
