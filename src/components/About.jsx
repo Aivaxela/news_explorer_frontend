@@ -28,7 +28,7 @@ export default function About() {
             &quot;NewsExplorer&quot; was created by me to showcase my web
             development skills I learned from attending the TripleTen Software
             Engineering program. It features a full-stack infrastructure,
-            utilizing the technologies in the MERN stack - while adhering a
+            utilizing the technologies in the MERN stack - while adhering to a
             strict Figma design.
           </p>
         </section>
