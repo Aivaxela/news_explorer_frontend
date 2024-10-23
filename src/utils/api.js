@@ -1,19 +1,26 @@
 export default class Api {
-  getUser = () => {
-    return fetch("http://localhost:3002/users/me", {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => console.error(err));
-  };
+  constructor({ baseUrl }) {
+    this.baseUrl = baseUrl;
+  }
+
+  //TODO: use JWT to log user in on page return:
+
+  // getUser = (token) => {
+  //   return fetch(`${this.baseUrl}/users/me`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //   })
+  //     .then((res) => {
+  //       if (res.ok) {
+  //         return res.json();
+  //       }
+  //     })
+  //     .catch((err) => console.error(err));
+  // };
 
   addArticle = (article) => {
     return new Promise((resolve) => {
