@@ -19,8 +19,7 @@ export default function SignupModal({ handleSignup, isVisible }) {
       });
       return;
     }
-    handleSignup(values);
-    resetForm();
+    handleSignup(values, resetForm);
   };
 
   return (
