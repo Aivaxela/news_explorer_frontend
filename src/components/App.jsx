@@ -6,7 +6,8 @@ import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 import Api from "../utils/api";
 import NewsApi from "../utils/newsApi";
-import { authorize } from "../utils/auth";
+import { signin, signup } from "../utils/auth";
+import { setToken, getToken, removeToken } from "../utils/token.js";
 import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -15,15 +16,16 @@ import SavedNews from "./SavedNews";
 import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
-const api = new Api();
+const api = new Api({ baseUrl: "http://localhost:3002/users/me" });
 const newsApi = new NewsApi({
   baseUrl: "https://nomoreparties.co/news/v2/everything",
   apiKey: "a16de474931b4e5a83f83ad53ba3df69",
 });
 
-api.getUser().then((res) => console.log(res));
+// api.getUser().then((res) => console.log(res));
 
 export default function App() {
+  const navigate = useNavigate();
   const [searchState, setSearchState] = useState({
     results: [],
     keyword: "",
@@ -34,13 +36,11 @@ export default function App() {
   });
   const [userState, setUserState] = useState({
     loggedIn: false,
-    email: "",
     username: "",
     savedNews: [],
   });
   const [activeModal, setActiveModal] = useState("");
   const [protectedDestination, setProtectedDestination] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (protectedDestination !== "") setActiveModal("signin");
@@ -58,6 +58,25 @@ export default function App() {
       document.removeEventListener("keydown", handleCloseOnEsc);
     };
   }, [activeModal]);
+
+  //TODO: use JWT to log user in on page return:
+
+  // useEffect(() => {
+  //   const jwt = getToken();
+  //   if (!jwt) return;
+  //   api
+  //     .getUser(jwt)
+  //     .then((userData) => {
+  //       setUserState({
+  //         ...userState,
+  //         loggedIn: true,
+  //         username: userData.username,
+  //         email: userData.email,
+  //       });
+  //       navigate(protectedDestination || "/");
+  //     })
+  //     .catch((err) => console.error(err));
+  // });
 
   const handleSearchSubmit = (query) => {
     setSearchState((currState) => ({
@@ -113,31 +132,32 @@ export default function App() {
   };
 
   const handleSignin = (values, resetForm) => {
-    authorize(values)
+    signin(values)
       .then((res) => {
         setUserState({
           ...userState,
           loggedIn: true,
           username: res.username,
-          email: res.email,
         });
         closeActiveModal();
         resetForm();
+        setToken(res.token);
         navigate(protectedDestination || "/");
       })
       .catch((err) => console.error(err));
   };
 
-  const handleSignup = (values) => {
-    authorize(values)
+  const handleSignup = (values, resetForm) => {
+    signup(values)
       .then((res) => {
         setUserState({
           ...userState,
           loggedIn: true,
           username: res.username,
-          email: res.email,
         });
         closeActiveModal();
+        resetForm();
+        setToken(res.token);
       })
       .catch((err) => console.error(err));
   };
@@ -149,6 +169,7 @@ export default function App() {
       username: "",
       savedNews: [],
     });
+    removeToken();
   };
 
   const closeActiveModal = () => {
