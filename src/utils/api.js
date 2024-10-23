@@ -3,24 +3,22 @@ export default class Api {
     this.baseUrl = baseUrl;
   }
 
-  //TODO: use JWT to log user in on page return:
-
-  // getUser = (token) => {
-  //   return fetch(`${this.baseUrl}/users/me`, {
-  //     method: "GET",
-  //     headers: {
-  //       Accept: "application/json",
-  //       "Content-Type": "application/json",
-  //       Authorization: `Bearer ${token}`,
-  //     },
-  //   })
-  //     .then((res) => {
-  //       if (res.ok) {
-  //         return res.json();
-  //       }
-  //     })
-  //     .catch((err) => console.error(err));
-  // };
+  getUser = (token) => {
+    return fetch(`${this.baseUrl}/users/me`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
 
   addArticle = (article) => {
     return new Promise((resolve) => {

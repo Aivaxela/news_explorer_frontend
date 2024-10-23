@@ -16,7 +16,7 @@ import SavedNews from "./SavedNews";
 import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
-const api = new Api({ baseUrl: "http://localhost:3002/users/me" });
+const api = new Api({ baseUrl: "http://localhost:3002" });
 const newsApi = new NewsApi({
   baseUrl: "https://nomoreparties.co/news/v2/everything",
   apiKey: "a16de474931b4e5a83f83ad53ba3df69",
@@ -35,6 +35,7 @@ export default function App() {
     nothingFound: false,
   });
   const [userState, setUserState] = useState({
+    authLoaded: false,
     loggedIn: false,
     username: "",
     savedNews: [],
@@ -59,24 +60,28 @@ export default function App() {
     };
   }, [activeModal]);
 
-  //TODO: use JWT to log user in on page return:
-
-  // useEffect(() => {
-  //   const jwt = getToken();
-  //   if (!jwt) return;
-  //   api
-  //     .getUser(jwt)
-  //     .then((userData) => {
-  //       setUserState({
-  //         ...userState,
-  //         loggedIn: true,
-  //         username: userData.username,
-  //         email: userData.email,
-  //       });
-  //       navigate(protectedDestination || "/");
-  //     })
-  //     .catch((err) => console.error(err));
-  // });
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      setUserState({
+        ...userState,
+        authLoaded: true,
+      });
+      return;
+    }
+    api
+      .getUser(jwt)
+      .then((userData) => {
+        setUserState({
+          ...userState,
+          authLoaded: true,
+          loggedIn: true,
+          username: userData.username,
+          email: userData.email,
+        });
+      })
+      .catch((err) => console.error(err));
+  }, []);
 
   const handleSearchSubmit = (query) => {
     setSearchState((currState) => ({
@@ -169,6 +174,7 @@ export default function App() {
       username: "",
       savedNews: [],
     });
+    navigate("/");
     removeToken();
   };
 

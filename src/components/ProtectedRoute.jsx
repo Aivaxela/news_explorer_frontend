@@ -8,16 +8,18 @@ export default function ProtectedRoute({ children, setProtectedDestination }) {
   const { userState } = useContext(UserContext);
 
   useEffect(() => {
-    if (!userState.loggedIn) {
+    if (!userState.loggedIn && userState.authLoaded) {
       setProtectedDestination(location.pathname);
       navigate("/");
     }
   }, [
+    userState.authLoaded,
     userState.loggedIn,
     navigate,
     location.pathname,
     setProtectedDestination,
   ]);
 
+  if (!userState.authLoaded) return;
   if (userState.loggedIn) return children;
 }
