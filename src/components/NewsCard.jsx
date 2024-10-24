@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 import { SearchContext } from "../contexts/SearchContext";
-import { v4 as uuidv4 } from "uuid";
 
 export default function NewsCard({
   urlToImage,
@@ -49,7 +48,6 @@ export default function NewsCard({
         publishedAt: publishedAt,
         url: url,
         keyword: searchState.keyword,
-        id: uuidv4(),
       });
     } else {
       removeSavedArticle(id);

@@ -125,8 +125,8 @@ export default function App() {
 
     api
       .saveArticle(newArticle, jwt)
-      .then((res) => {
-        const updatedSavedNews = [...userState.savedNews, res];
+      .then((newArticle) => {
+        const updatedSavedNews = [...userState.savedNews, newArticle];
         setUserState((prevState) => ({
           ...prevState,
           savedNews: updatedSavedNews,
@@ -136,14 +136,17 @@ export default function App() {
   };
 
   const removeSavedArticle = (id) => {
+    const jwt = getToken();
+    if (!jwt) return;
+
     api
-      .removeArticle(id)
-      .then((res) => {
+      .removeArticle(id, jwt)
+      .then(({ data }) => {
         setUserState((prevState) => ({
           ...prevState,
-          savedNews: [
-            ...userState.savedNews.filter((article) => article.id != res.id),
-          ],
+          savedNews: prevState.savedNews.filter(
+            (article) => article._id != data._id
+          ),
         }));
       })
       .catch((err) => console.error(err));

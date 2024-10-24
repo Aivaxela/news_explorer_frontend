@@ -126,7 +126,7 @@ export default function NewsCardList() {
                     url={article.url}
                     keyword={article.keyword}
                     page={"saved"}
-                    id={article.id}
+                    id={article._id}
                     key={article._id}
                   />
                 );

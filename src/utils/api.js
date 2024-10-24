@@ -1,10 +1,10 @@
 export default class Api {
   constructor({ baseUrl }) {
-    this.baseUrl = baseUrl;
+    this._baseUrl = baseUrl;
   }
 
   getUser = (token) => {
-    return fetch(`${this.baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/me`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -21,7 +21,7 @@ export default class Api {
   };
 
   getArticles = (token) => {
-    return fetch(`${this.baseUrl}/articles`, {
+    return fetch(`${this._baseUrl}/articles`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -38,7 +38,7 @@ export default class Api {
   };
 
   saveArticle = (article, token) => {
-    return fetch(`${this.baseUrl}/articles`, {
+    return fetch(`${this._baseUrl}/articles`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -55,11 +55,19 @@ export default class Api {
       .catch((err) => console.error(err));
   };
 
-  removeArticle = (id) => {
-    return new Promise((resolve) => {
-      resolve({
-        id: id,
-      });
-    });
+  removeArticle = (articleId, token) => {
+    return fetch(`${this._baseUrl}/articles/${articleId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => console.error(err));
   };
 }
