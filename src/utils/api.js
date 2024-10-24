@@ -20,19 +20,39 @@ export default class Api {
       .catch((err) => console.error(err));
   };
 
-  addArticle = (article) => {
-    return new Promise((resolve) => {
-      resolve({
-        urlToImage: article.urlToImage,
-        title: article.title,
-        description: article.description,
-        source: article.source,
-        publishedAt: article.publishedAt,
-        url: article.url,
-        keyword: article.keyword,
-        id: article.id,
-      });
-    });
+  getArticles = (token) => {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => console.error(err));
+  };
+
+  saveArticle = (article, token) => {
+    return fetch(`${this.baseUrl}/articles`, {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(article),
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        }
+      })
+      .catch((err) => console.error(err));
   };
 
   removeArticle = (id) => {

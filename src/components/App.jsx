@@ -109,9 +109,19 @@ export default function App() {
       );
   };
 
+  const getArticles = () => {
+    const jwt = getToken();
+    if (!jwt) return;
+
+    api.getArticles(jwt).then(({ data }) => console.log(data[0]));
+  };
+
   const addSavedArticle = (newArticle) => {
+    const jwt = getToken();
+    if (!jwt) return;
+
     api
-      .addArticle(newArticle)
+      .saveArticle(newArticle, jwt)
       .then((res) => {
         const updatedSavedNews = [...userState.savedNews, res];
         setUserState({
