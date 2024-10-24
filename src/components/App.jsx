@@ -125,8 +125,8 @@ export default function App() {
 
     api
       .saveArticle(newArticle, jwt)
-      .then((newArticle) => {
-        const updatedSavedNews = [...userState.savedNews, newArticle];
+      .then(({ data }) => {
+        const updatedSavedNews = [...userState.savedNews, data];
         setUserState((prevState) => ({
           ...prevState,
           savedNews: updatedSavedNews,

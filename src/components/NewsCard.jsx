@@ -50,6 +50,7 @@ export default function NewsCard({
         keyword: searchState.keyword,
       });
     } else {
+      if (page !== "saved") return;
       removeSavedArticle(id);
     }
   };
@@ -64,12 +65,7 @@ export default function NewsCard({
 
   return (
     <div className="card">
-      <div
-        className={`card__bookmark ${
-          bookmarked && page != "saved" ? "card__bookmark_disabled" : ""
-        }`}
-        tabIndex={0}
-      >
+      <div className={"card__bookmark"} tabIndex={0}>
         <div
           className={`card__bookmark-tooltip ${
             bookmarked && page != "saved"
