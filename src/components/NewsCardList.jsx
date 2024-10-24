@@ -127,7 +127,7 @@ export default function NewsCardList() {
                     keyword={article.keyword}
                     page={"saved"}
                     id={article.id}
-                    key={article.id}
+                    key={article._id}
                   />
                 );
               })}
