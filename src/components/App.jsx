@@ -22,8 +22,6 @@ const newsApi = new NewsApi({
   apiKey: "a16de474931b4e5a83f83ad53ba3df69",
 });
 
-// api.getUser().then((res) => console.log(res));
-
 export default function App() {
   const navigate = useNavigate();
   const [searchState, setSearchState] = useState({
@@ -63,29 +61,32 @@ export default function App() {
   useEffect(() => {
     const jwt = getToken();
     if (!jwt) {
-      setUserState({
-        ...userState,
+      setUserState((prevState) => ({
+        ...prevState,
         authLoaded: true,
-      });
+      }));
       return;
     }
-    api
-      .getUser(jwt)
-      .then((userData) => {
-        setUserState({
-          ...userState,
-          authLoaded: true,
-          loggedIn: true,
-          username: userData.username,
-          email: userData.email,
-        });
-      })
-      .catch((err) => console.error(err));
+    getUserArticles().then((articles) => {
+      api
+        .getUser(jwt)
+        .then((userData) => {
+          setUserState((prevState) => ({
+            ...prevState,
+            authLoaded: true,
+            loggedIn: true,
+            username: userData.username,
+            email: userData.email,
+            savedNews: articles,
+          }));
+        })
+        .catch((err) => console.error(err));
+    });
   }, []);
 
   const handleSearchSubmit = (query) => {
-    setSearchState((currState) => ({
-      ...currState,
+    setSearchState((prevState) => ({
+      ...prevState,
       loading: true,
       nothingFound: false,
       articlesShown: 3,
@@ -93,8 +94,8 @@ export default function App() {
     newsApi
       .getNewsArticles(query)
       .then((res) => {
-        setSearchState((currState) => ({
-          ...currState,
+        setSearchState((prevState) => ({
+          ...prevState,
           keyword: query,
           articlesAvail: res.totalResults,
           results: res.articles.filter(
@@ -105,15 +106,17 @@ export default function App() {
       })
       .catch((err) => console.error(err))
       .finally(() =>
-        setSearchState((currState) => ({ ...currState, loading: false }))
+        setSearchState((prevState) => ({ ...prevState, loading: false }))
       );
   };
 
-  const getArticles = () => {
+  const getUserArticles = () => {
     const jwt = getToken();
     if (!jwt) return;
 
-    api.getArticles(jwt).then(({ data }) => console.log(data[0]));
+    return api.getArticles(jwt).then(({ data }) => {
+      return data;
+    });
   };
 
   const addSavedArticle = (newArticle) => {
@@ -124,10 +127,10 @@ export default function App() {
       .saveArticle(newArticle, jwt)
       .then((res) => {
         const updatedSavedNews = [...userState.savedNews, res];
-        setUserState({
-          ...userState,
+        setUserState((prevState) => ({
+          ...prevState,
           savedNews: updatedSavedNews,
-        });
+        }));
       })
       .catch((err) => console.error(err));
   };
@@ -136,54 +139,60 @@ export default function App() {
     api
       .removeArticle(id)
       .then((res) => {
-        setUserState({
-          ...userState,
+        setUserState((prevState) => ({
+          ...prevState,
           savedNews: [
             ...userState.savedNews.filter((article) => article.id != res.id),
           ],
-        });
+        }));
       })
       .catch((err) => console.error(err));
   };
 
   const handleSignin = (values, resetForm) => {
     signin(values)
-      .then((res) => {
-        setUserState({
-          ...userState,
-          loggedIn: true,
-          username: res.username,
-        });
-        closeActiveModal();
-        resetForm();
-        setToken(res.token);
-        navigate(protectedDestination || "/");
+      .then((userData) => {
+        setToken(userData.token);
+        getUserArticles()
+          .then((articles) => {
+            setUserState((prevState) => ({
+              ...prevState,
+              loggedIn: true,
+              username: userData.username,
+              savedNews: articles,
+            }));
+            closeActiveModal();
+            resetForm();
+            navigate(protectedDestination || "/");
+          })
+          .catch((err) => console.error(err));
       })
       .catch((err) => console.error(err));
   };
 
   const handleSignup = (values, resetForm) => {
     signup(values)
-      .then((res) => {
-        setUserState({
-          ...userState,
+      .then((userData) => {
+        setToken(userData.token);
+        setUserState((prevState) => ({
+          ...prevState,
           loggedIn: true,
-          username: res.username,
-        });
+          username: userData.username,
+        }));
         closeActiveModal();
         resetForm();
-        setToken(res.token);
       })
       .catch((err) => console.error(err));
   };
 
   const handleSignout = () => {
-    setUserState({
+    setUserState((prevState) => ({
+      ...prevState,
       loggedIn: false,
       email: "",
       username: "",
       savedNews: [],
-    });
+    }));
     navigate("/");
     removeToken();
   };
