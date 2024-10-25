@@ -16,7 +16,11 @@ import SavedNews from "./SavedNews";
 import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
-const api = new Api({ baseUrl: "http://localhost:3002" });
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.yournewsexplorer.crabdance.com"
+    : "http://localhost:3002";
+const api = new Api({ baseUrl });
 const newsApi = new NewsApi({
   baseUrl: "https://nomoreparties.co/news/v2/everything",
   apiKey: "a16de474931b4e5a83f83ad53ba3df69",
