@@ -5,7 +5,6 @@ import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 import Api from "../utils/api";
-import NewsApi from "../utils/newsApi";
 import { signin, signup } from "../utils/auth";
 import { setToken, getToken, removeToken } from "../utils/token.js";
 import Nav from "./Nav";
@@ -21,10 +20,6 @@ const baseUrl =
     ? "https://api.yournewsexplorer.crabdance.com"
     : "http://localhost:3002";
 const api = new Api({ baseUrl });
-const newsApi = new NewsApi({
-  baseUrl: "https://nomoreparties.co/news/v2/everything",
-  apiKey: "a16de474931b4e5a83f83ad53ba3df69",
-});
 
 export default function App() {
   const navigate = useNavigate();
@@ -95,7 +90,7 @@ export default function App() {
       nothingFound: false,
       articlesShown: 3,
     }));
-    newsApi
+    api
       .getNewsArticles(query)
       .then((res) => {
         setSearchState((prevState) => ({
