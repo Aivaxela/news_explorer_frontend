@@ -56,7 +56,7 @@ export default class Api {
           return res.json();
         }
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.log("here"));
   };
 
   saveArticle = (article, token) => {
