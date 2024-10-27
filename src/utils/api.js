@@ -15,13 +15,7 @@ export default class Api {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      })
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .catch((err) => console.error(err));
+      }).then((res) => this._checkReponse(res));
     }
   }
 
@@ -33,13 +27,7 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => console.error(err));
+    }).then((res) => this._checkReponse(res));
   };
 
   getArticles = (token) => {
@@ -50,16 +38,7 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-        return res.json().then((err) => {
-          return Promise.reject(`Error: ${res.status} - ${err.message}`);
-        });
-      })
-      .catch((err) => alert(err));
+    }).then((res) => this._checkReponse(res));
   };
 
   saveArticle = (article, token) => {
@@ -71,13 +50,7 @@ export default class Api {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(article),
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => console.error(err));
+    }).then((res) => this._checkReponse(res));
   };
 
   removeArticle = (articleId, token) => {
@@ -87,13 +60,7 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    })
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .catch((err) => console.error(err));
+    }).then((res) => this._checkReponse(res));
   };
 
   _checkReponse(res) {
@@ -106,6 +73,6 @@ export default class Api {
       .then((err) => {
         return Promise.reject(`Error: ${res.status} - ${err.message}`);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   }
 }

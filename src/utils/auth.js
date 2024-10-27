@@ -11,13 +11,7 @@ export const signin = ({ email, password }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
-    })
-    .catch((err) => console.error(err));
+  }).then((res) => _checkReponse(res));
 };
 
 export const signup = ({ email, password, username }) => {
@@ -28,11 +22,18 @@ export const signup = ({ email, password, username }) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ email, password, username }),
-  })
-    .then((res) => {
-      if (res.ok) {
-        return res.json();
-      }
+  }).then((res) => _checkReponse(res));
+};
+
+const _checkReponse = (res) => {
+  if (res.ok) {
+    return res.json();
+  }
+
+  return res
+    .json()
+    .then((err) => {
+      return Promise.reject(`Error: ${res.status} - ${err.message}`);
     })
-    .catch((err) => console.error(err));
+    .catch((err) => alert(err));
 };
