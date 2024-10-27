@@ -55,8 +55,11 @@ export default class Api {
         if (res.ok) {
           return res.json();
         }
+        return res.json().then((err) => {
+          return Promise.reject(`Error: ${res.status} - ${err.message}`);
+        });
       })
-      .catch((err) => console.log("here"));
+      .catch((err) => alert(err));
   };
 
   saveArticle = (article, token) => {
