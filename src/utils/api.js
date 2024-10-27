@@ -20,7 +20,7 @@ export default class Api {
   }
 
   getUser = (token) => {
-    return fetch(`${this._baseUrl}/users/me`, {
+    return fetch(`${this._baseUrl}/users/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -31,7 +31,7 @@ export default class Api {
   };
 
   getArticles = (token) => {
-    return fetch(`${this._baseUrl}/articles/me`, {
+    return fetch(`${this._baseUrl}/articles/`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -42,7 +42,7 @@ export default class Api {
   };
 
   saveArticle = (article, token) => {
-    return fetch(`${this._baseUrl}/articles/me`, {
+    return fetch(`${this._baseUrl}/articles/`, {
       method: "POST",
       headers: {
         Accept: "application/json",
@@ -54,7 +54,7 @@ export default class Api {
   };
 
   removeArticle = (articleId, token) => {
-    return fetch(`${this._baseUrl}/articles/me/${articleId}`, {
+    return fetch(`${this._baseUrl}/articles/${articleId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
