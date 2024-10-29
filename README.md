@@ -9,8 +9,9 @@ Uses data from NewsAPI:
 
 Link to application:
 
-- https://aivaxela.github.io/news_explorer_frontend/
+- https://yournewsexplorer.crabdance.com
 
+  
 Link to backend repo:
 
 - https://github.com/Aivaxela/news_explorer_backend
