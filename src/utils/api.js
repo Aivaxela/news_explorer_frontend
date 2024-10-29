@@ -15,7 +15,7 @@ export default class Api {
           Accept: "application/json",
           "Content-Type": "application/json",
         },
-      }).then((res) => this._checkReponse(res));
+      }).then((res) => this._checkResponse(res));
     }
   }
 
@@ -27,7 +27,7 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => this._checkReponse(res));
+    }).then((res) => this._checkResponse(res));
   };
 
   getArticles = (token) => {
@@ -38,7 +38,7 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => this._checkReponse(res));
+    }).then((res) => this._checkResponse(res));
   };
 
   saveArticle = (article, token) => {
@@ -50,7 +50,7 @@ export default class Api {
         Authorization: `Bearer ${token}`,
       },
       body: JSON.stringify(article),
-    }).then((res) => this._checkReponse(res));
+    }).then((res) => this._checkResponse(res));
   };
 
   removeArticle = (articleId, token) => {
@@ -60,10 +60,10 @@ export default class Api {
         "Content-Type": "application/json",
         Authorization: `Bearer ${token}`,
       },
-    }).then((res) => this._checkReponse(res));
+    }).then((res) => this._checkResponse(res));
   };
 
-  _checkReponse(res) {
+  _checkResponse(res) {
     if (res.ok) {
       return res.json();
     }
