@@ -79,7 +79,7 @@ export default function App() {
             savedNews: articles,
           }));
         })
-        .catch((err) => console.error(err));
+        .catch((err) => alert(err));
     });
   }, []);
 
@@ -103,7 +103,7 @@ export default function App() {
           nothingFound: res.totalResults <= 0 ? true : false,
         }));
       })
-      .catch((err) => console.error(err))
+      .catch((err) => alert(err))
       .finally(() =>
         setSearchState((prevState) => ({ ...prevState, loading: false }))
       );
@@ -131,7 +131,7 @@ export default function App() {
           savedNews: updatedSavedNews,
         }));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const removeSavedArticle = (id) => {
@@ -148,7 +148,7 @@ export default function App() {
           ),
         }));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const handleSignin = (values, resetForm) => {
@@ -167,9 +167,9 @@ export default function App() {
             resetForm();
             navigate(protectedDestination || "/");
           })
-          .catch((err) => console.error(err));
+          .catch((err) => alert(err));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const handleSignup = (values, resetForm) => {
@@ -184,7 +184,7 @@ export default function App() {
         closeActiveModal();
         resetForm();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const handleSignout = () => {
