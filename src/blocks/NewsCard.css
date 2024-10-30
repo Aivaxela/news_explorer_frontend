@@ -118,10 +118,6 @@
   z-index: 1;
 }
 
-.card__bookmark-tooltip_disabled {
-  display: none;
-}
-
 .card__bookmark:hover .card__bookmark-tooltip {
   opacity: 1;
   transform: translateX(0);

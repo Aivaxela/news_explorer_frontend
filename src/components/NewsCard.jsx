@@ -49,10 +49,17 @@ export default function NewsCard({
         url: url,
         keyword: searchState.keyword,
       });
-    } else {
-      if (page !== "saved") return;
-      removeSavedArticle(id);
+      return;
     }
+    if (!id) {
+      const matchingArticle = userState.savedNews.find(
+        (article) =>
+          article.title === title && article.publishedAt === publishedAt
+      )._id;
+      removeSavedArticle(matchingArticle);
+      return;
+    }
+    removeSavedArticle(id);
   };
 
   const handleBookmarkClick = () => {
@@ -66,13 +73,7 @@ export default function NewsCard({
   return (
     <div className="card">
       <div className={"card__bookmark"} tabIndex={0}>
-        <div
-          className={`card__bookmark-tooltip ${
-            bookmarked && page != "saved"
-              ? "card__bookmark-tooltip_disabled"
-              : ""
-          }`}
-        >
+        <div className={`card__bookmark-tooltip`}>
           {userState.loggedIn && bookmarked
             ? "Remove from saved"
             : userState.loggedIn
