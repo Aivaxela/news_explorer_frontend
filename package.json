@@ -1,6 +1,6 @@
 {
   "name": "vite-project",
-  "homepage": "http://localhost:3000",
+  "homepage": "https://yournewsexplorer.crabdance.com",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -9,7 +9,7 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "npm run build && scp -r ./dist/* rmarcum13@yournewsexplorer.crabdance.com:/home/rmarcum13/frontend_news_explorer"
   },
   "dependencies": {
     "react": "^18.3.1",

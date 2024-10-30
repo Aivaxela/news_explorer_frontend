@@ -11,6 +11,7 @@ Link to application:
 
 - https://yournewsexplorer.crabdance.com
 
+  
 Link to backend repo:
 
 - https://github.com/Aivaxela/news_explorer_backend

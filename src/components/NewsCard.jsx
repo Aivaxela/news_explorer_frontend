@@ -6,7 +6,6 @@ import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 import { SearchContext } from "../contexts/SearchContext";
-import { v4 as uuidv4 } from "uuid";
 
 export default function NewsCard({
   urlToImage,
@@ -49,11 +48,18 @@ export default function NewsCard({
         publishedAt: publishedAt,
         url: url,
         keyword: searchState.keyword,
-        id: uuidv4(),
       });
-    } else {
-      removeSavedArticle(id);
+      return;
     }
+    if (!id) {
+      const matchingArticle = userState.savedNews.find(
+        (article) =>
+          article.title === title && article.publishedAt === publishedAt
+      )._id;
+      removeSavedArticle(matchingArticle);
+      return;
+    }
+    removeSavedArticle(id);
   };
 
   const handleBookmarkClick = () => {
@@ -66,19 +72,8 @@ export default function NewsCard({
 
   return (
     <div className="card">
-      <div
-        className={`card__bookmark ${
-          bookmarked && page != "saved" ? "card__bookmark_disabled" : ""
-        }`}
-        tabIndex={0}
-      >
-        <div
-          className={`card__bookmark-tooltip ${
-            bookmarked && page != "saved"
-              ? "card__bookmark-tooltip_disabled"
-              : ""
-          }`}
-        >
+      <div className={"card__bookmark"} tabIndex={0}>
+        <div className={`card__bookmark-tooltip`}>
           {userState.loggedIn && bookmarked
             ? "Remove from saved"
             : userState.loggedIn

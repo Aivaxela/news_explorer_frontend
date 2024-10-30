@@ -20,7 +20,7 @@ export default function ModalWithForm({
     >
       <div className="modal__box">
         <h3 className="modal__title">{formTitle}</h3>
-        <button className="modal__close" type="button" onClick={() => {}}>
+        <button className="modal__close" type="button">
           <img
             src={closeIcon}
             alt="popup close button"

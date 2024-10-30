@@ -5,8 +5,8 @@ import { SearchContext } from "../contexts/SearchContext";
 import { UserContext } from "../contexts/UserContext";
 import { AppContext } from "../contexts/AppContext";
 import Api from "../utils/api";
-import NewsApi from "../utils/newsApi";
-import { authorize } from "../utils/auth";
+import { signin, signup } from "../utils/auth";
+import { setToken, getToken, removeToken } from "../utils/token.js";
 import Nav from "./Nav";
 import Main from "./Main";
 import Footer from "./Footer";
@@ -15,13 +15,14 @@ import SavedNews from "./SavedNews";
 import SigninModal from "./SigninModal";
 import SignupModal from "./SignupModal";
 
-const api = new Api();
-const newsApi = new NewsApi({
-  baseUrl: "https://nomoreparties.co/news/v2/everything",
-  apiKey: "a16de474931b4e5a83f83ad53ba3df69",
-});
+const baseUrl =
+  process.env.NODE_ENV === "production"
+    ? "https://api.yournewsexplorer.crabdance.com"
+    : "http://localhost:3002";
+const api = new Api({ baseUrl });
 
 export default function App() {
+  const navigate = useNavigate();
   const [searchState, setSearchState] = useState({
     results: [],
     keyword: "",
@@ -31,14 +32,13 @@ export default function App() {
     nothingFound: false,
   });
   const [userState, setUserState] = useState({
+    authLoaded: false,
     loggedIn: false,
-    email: "",
     username: "",
     savedNews: [],
   });
   const [activeModal, setActiveModal] = useState("");
   const [protectedDestination, setProtectedDestination] = useState("");
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (protectedDestination !== "") setActiveModal("signin");
@@ -57,18 +57,44 @@ export default function App() {
     };
   }, [activeModal]);
 
+  useEffect(() => {
+    const jwt = getToken();
+    if (!jwt) {
+      setUserState((prevState) => ({
+        ...prevState,
+        authLoaded: true,
+      }));
+      return;
+    }
+    getUserArticles().then((articles) => {
+      api
+        .getUser(jwt)
+        .then((userData) => {
+          setUserState((prevState) => ({
+            ...prevState,
+            authLoaded: true,
+            loggedIn: true,
+            username: userData.username,
+            email: userData.email,
+            savedNews: articles,
+          }));
+        })
+        .catch((err) => alert(err));
+    });
+  }, []);
+
   const handleSearchSubmit = (query) => {
-    setSearchState((currState) => ({
-      ...currState,
+    setSearchState((prevState) => ({
+      ...prevState,
       loading: true,
       nothingFound: false,
       articlesShown: 3,
     }));
-    newsApi
+    api
       .getNewsArticles(query)
       .then((res) => {
-        setSearchState((currState) => ({
-          ...currState,
+        setSearchState((prevState) => ({
+          ...prevState,
           keyword: query,
           articlesAvail: res.totalResults,
           results: res.articles.filter(
@@ -77,76 +103,100 @@ export default function App() {
           nothingFound: res.totalResults <= 0 ? true : false,
         }));
       })
-      .catch((err) => console.error(err))
+      .catch((err) => alert(err))
       .finally(() =>
-        setSearchState((currState) => ({ ...currState, loading: false }))
+        setSearchState((prevState) => ({ ...prevState, loading: false }))
       );
   };
 
+  const getUserArticles = () => {
+    const jwt = getToken();
+    if (!jwt) return;
+
+    return api.getArticles(jwt).then(({ data }) => {
+      return data;
+    });
+  };
+
   const addSavedArticle = (newArticle) => {
+    const jwt = getToken();
+    if (!jwt) return;
+
     api
-      .addArticle(newArticle)
-      .then((res) => {
-        const updatedSavedNews = [...userState.savedNews, res];
-        setUserState({
-          ...userState,
+      .saveArticle(newArticle, jwt)
+      .then(({ data }) => {
+        const updatedSavedNews = [...userState.savedNews, data];
+        setUserState((prevState) => ({
+          ...prevState,
           savedNews: updatedSavedNews,
-        });
+        }));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const removeSavedArticle = (id) => {
+    const jwt = getToken();
+    if (!jwt) return;
+
     api
-      .removeArticle(id)
-      .then((res) => {
-        setUserState({
-          ...userState,
-          savedNews: [
-            ...userState.savedNews.filter((article) => article.id != res.id),
-          ],
-        });
+      .removeArticle(id, jwt)
+      .then(({ data }) => {
+        setUserState((prevState) => ({
+          ...prevState,
+          savedNews: prevState.savedNews.filter(
+            (article) => article._id != data._id
+          ),
+        }));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const handleSignin = (values, resetForm) => {
-    authorize(values)
-      .then((res) => {
-        setUserState({
-          ...userState,
-          loggedIn: true,
-          username: res.username,
-          email: res.email,
-        });
-        closeActiveModal();
-        resetForm();
-        navigate(protectedDestination || "/");
+    signin(values)
+      .then((userData) => {
+        setToken(userData.token);
+        getUserArticles()
+          .then((articles) => {
+            setUserState((prevState) => ({
+              ...prevState,
+              loggedIn: true,
+              username: userData.username,
+              savedNews: articles,
+            }));
+            closeActiveModal();
+            resetForm();
+            navigate(protectedDestination || "/");
+          })
+          .catch((err) => alert(err));
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
-  const handleSignup = (values) => {
-    authorize(values)
-      .then((res) => {
-        setUserState({
-          ...userState,
+  const handleSignup = (values, resetForm) => {
+    signup(values)
+      .then((userData) => {
+        setToken(userData.token);
+        setUserState((prevState) => ({
+          ...prevState,
           loggedIn: true,
-          username: res.username,
-          email: res.email,
-        });
+          username: userData.username,
+        }));
         closeActiveModal();
+        resetForm();
       })
-      .catch((err) => console.error(err));
+      .catch((err) => alert(err));
   };
 
   const handleSignout = () => {
-    setUserState({
+    setUserState((prevState) => ({
+      ...prevState,
       loggedIn: false,
       email: "",
       username: "",
       savedNews: [],
-    });
+    }));
+    navigate("/");
+    removeToken();
   };
 
   const closeActiveModal = () => {
